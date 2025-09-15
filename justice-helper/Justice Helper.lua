@@ -494,7 +494,7 @@ local commands = {
 		{ cmd = 'bk' , description = 'Запрос помощи с координатами' , text = '/r {my_doklad_nick} на CONTROL. Срочно нужна помощь, высылаю свои координаты. CODE 1&/me достаёт свой КПК и отправляет координаты в базу данных {fraction_tag}&/bk 10-20', arg = '' , enable = true , waiting = '1.500', bind = "{}" },
 		{ cmd = 'siren' , description = 'Вкл/выкл мигалок в т/с' , text = '{switchCarSiren}', arg = '' , enable = true , waiting = '1.500', bind = "{}" },
         { cmd = 'cure' , description = 'Поднять игрока из стадии' ,  text = '/me наклоняется над человеком, и прощупывает его пульс на сонной артерии&/cure {arg_id}&/do Пульс отсутствует.&/me начинает делать человеку непрямой массаж сердца, время от времени проверяя пульс&/do Спустя несколько минут сердце человека начало биться.&/do Человек пришел в сознание.&/todo Отлично*улыбаясь' , arg = '{arg_id}' , enable = true , waiting = '1.500' , bind = "{}"  },
-		{ cmd = 'time' , description = 'Посмотреть время' ,  text = '/me взглянул{sex} на свои часы с гравировкой MTG MODS и посмотрел{sex} время&/time&/do На часах показано время {get_time}.' , arg = '' , enable = true, waiting = '1.500' , bind = "{}"  },
+		{ cmd = 'time' , description = 'Посмотреть время' ,  text = '/me взглянул{sex} на свои часы с гравировкой SAMP Helpers и посмотрел{sex} время&/time&/do На часах показано время {get_time}.' , arg = '' , enable = true, waiting = '1.500' , bind = "{}"  },
         { cmd = 'pas' , description = 'Запросить документы (PD)' ,  text = 'Здраствуйте, управление {fraction_tag}, я {fraction_rank} {my_ru_nick}&/do Cлева на груди жетон полицейского, справа именная нашивка с именем.&/me  достаёт своё удостоверение из кармана&/showbadge {arg_id}&Прошу предъявить документ, удостоверяющий вашу личность.&/n {get_nick({arg_id})}, введите /showpass {my_id}' , arg = '{arg_id}' , enable = true , waiting = '1.500' , bind = "{}", in_fastmenu = true  },
         { cmd = 'doc' , description = 'Запросить документы (FBI)' ,  text = 'Здраствуйте, я {fraction_rank} {fraction_tag}&/do Cлева на груди спец-жетон ФБР.&/me указывает пальцем на свой спец-жетон на груди&Прошу предъявить документ, удостоверяющий вашу личность.&/n {get_nick({arg_id})}, введите /showpass {my_id} или /showbadge {my_id}' , arg = '{arg_id}' , enable = false , waiting = '1.500' , bind = "{}"  },
         { cmd = 'ts' , description = 'Выписать штраф' ,  text = '/do Бланк протокола и ручка находяться в нагрудном кармане.&/me достаёт из нагрудного кармана бланк протокола и ручку.&/me вписывает в бланк данные нарушителя&/writeticket {arg_id} {arg2}&/do Бланк протокола заполнен.&/me передаёт бланк со штрафом нарушителю для дальнейшей оплаты' , arg = '{arg_id} {arg2}' , enable = true, waiting = '1.500' , bind = "{}"  },
@@ -5057,7 +5057,7 @@ imgui.OnFrame(
 				imgui.BeginChild('##1', imgui.ImVec2(589 * settings.general.custom_dpi, 145 * settings.general.custom_dpi), true)
 				imgui.CenterText(fa.CIRCLE_INFO .. u8' Дополнительная информация про хелпер')
 				imgui.Separator()
-				imgui.Text(fa.CIRCLE_USER..u8" Разработчик данного хелпера: MTG MODS")
+				imgui.Text(fa.CIRCLE_USER..u8" Разработчик данного хелпера: SAMP Helpers")
 				imgui.Separator()
 				imgui.Text(fa.CIRCLE_INFO..u8" Установленная версия хелпера: " .. u8(thisScript().version))
 				imgui.SameLine()
