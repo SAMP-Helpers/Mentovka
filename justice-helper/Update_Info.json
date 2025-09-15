@@ -1,5 +1,5 @@
 {
   "current_version": "2.4",
-  "update_url": "https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/Justice%20Helper.lua",
+  "update_url": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/justice-helper/Justice%20Helper.lua",
   "update_info": "- Переход на новое облако для поддержки умного розыска и штрафов\n- Фикс Авто Увала\n- Фиксы некоторых проблем\n- Техническое обновление"
 }
