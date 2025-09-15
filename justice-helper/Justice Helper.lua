@@ -1,9 +1,9 @@
 ---@diagnostic disable: undefined-global, need-check-nil, lowercase-global, cast-local-type, unused-local
 
-script_name("Justice Helper")
-script_description('This is a Cross-platform Lua script helper for Arizona RP players who work in the Ministry of Justice (PD and FBI) ??and the Ministry of Defense (Army)')
-script_author("MTG MODS")
-script_version("2.3")
+script_name("Mentovka Helper")
+script_description('This is a Cross-platform Lua script helper for Arizona RP players who work in the Ministry of Mentovka (PD and FBI) ??and the Ministry of Defense (Army)')
+script_author("SAMP Helpers")
+script_version("2.4")
 
 require('lib.moonloader')
 require('encoding').default = 'CP1251'
@@ -11,10 +11,10 @@ local u8 = require('encoding').UTF8
 local ffi = require('ffi')
 local sizeX, sizeY = getScreenResolution()
 
-print('[Justice Helper] Скрипт инициализирован. Версия: ' .. thisScript().version)
+print('[Mentovka Helper] Скрипт инициализирован. Версия: ' .. thisScript().version)
 -------------------------------------------- JSON SETTINGS ---------------------------------------------
-local configDirectory = getWorkingDirectory():gsub('\\','/') .. "/Justice Helper"
-local path_helper = getWorkingDirectory():gsub('\\','/') .. "/Justice Helper.lua"
+local configDirectory = getWorkingDirectory():gsub('\\','/') .. "/Mentovka Helper"
+local path_helper = getWorkingDirectory():gsub('\\','/') .. "/Mentovka Helper.lua"
 local path_settings = configDirectory .. "/Settings.json"
 local settings = {}
 local default_settings = {
@@ -168,7 +168,7 @@ function load_settings()
     end
     if not doesFileExist(path_settings) then
         settings = default_settings
-		print('[Justice Helper] Файл с настройками не найден, использую стандартные настройки!')
+		print('[Mentovka Helper] Файл с настройками не найден, использую стандартные настройки!')
     else
         local file = io.open(path_settings, 'r')
         if file then
@@ -176,7 +176,7 @@ function load_settings()
             file:close()
 			if #contents == 0 then
 				settings = default_settings
-				print('[Justice Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
+				print('[Mentovka Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
@@ -192,20 +192,20 @@ function load_settings()
 					-- 	end
 					-- end
 					if settings.general.version ~= thisScript().version then
-						print('[Justice Helper] Новая версия, сброс настроек!')
+						print('[Mentovka Helper] Новая версия, сброс настроек!')
 						settings = default_settings
 						save_settings()
 						reload_script = true
 					else
-						print('[Justice Helper] Настройки успешно загружены!')
+						print('[Mentovka Helper] Настройки успешно загружены!')
 					end
 				else
-					print('[Justice Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
+					print('[Mentovka Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
 				end
 			end
         else
             settings = default_settings
-			print('[Justice Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
+			print('[Mentovka Helper] Не удалось открыть файл с настройками, использую стандартные настройки!')
         end
     end
 end
@@ -215,10 +215,10 @@ function save_settings()
         local result, encoded = pcall(encodeJson, settings)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Настройки сохранены!')
+		print('[Mentovka Helper] Настройки сохранены!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить настройки хелпера, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить настройки хелпера, ошибка: ', errstr)
         return false
     end
 end
@@ -240,25 +240,25 @@ function load_notes()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с заметками!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с заметками!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					notes = loaded
-					print('[Justice Helper] Заметки инициализированы!')
+					print('[Mentovka Helper] Заметки инициализированы!')
 				else
-					print('[Justice Helper] Не удалось открыть файл с заметками!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с заметками!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с заметками!')
-			print('[Justice Helper] Причина: ')
+			print('[Mentovka Helper] Не удалось открыть файл с заметками!')
+			print('[Mentovka Helper] Причина: ')
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с заметками!')
-		print('[Justice Helper] Причина: этого файла нету в папке '..configDirectory)
+		print('[Mentovka Helper] Не удалось открыть файл с заметками!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке '..configDirectory)
 	end
 end
 function save_notes()
@@ -267,10 +267,10 @@ function save_notes()
         local result, encoded = pcall(encodeJson, notes)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Заметки сохранены!')
+		print('[Mentovka Helper] Заметки сохранены!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить заметки, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить заметки, ошибка: ', errstr)
         return false
     end
 end
@@ -360,25 +360,25 @@ function load_rp_guns()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с рп ганами!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с рп ганами!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					rp_guns = loaded
-					print('[Justice Helper] Рп ганы инициализированы!')
+					print('[Mentovka Helper] Рп ганы инициализированы!')
 				else
-					print('[Justice Helper] Не удалось открыть файл с с рп ганами!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с с рп ганами!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с rp ганами!')
-			print('[Justice Helper] Причина: ')
+			print('[Mentovka Helper] Не удалось открыть файл с rp ганами!')
+			print('[Mentovka Helper] Причина: ')
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с с рп ганами!')
-		print('[Justice Helper] Причина: этого файла нету в папке '..configDirectory)
+		print('[Mentovka Helper] Не удалось открыть файл с с рп ганами!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке '..configDirectory)
 	end
 end
 function save_rp_guns()
@@ -387,10 +387,10 @@ function save_rp_guns()
         local result, encoded = pcall(encodeJson, rp_guns)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Рп ганы сохранены!')
+		print('[Mentovka Helper] Рп ганы сохранены!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить рп ганы, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить рп ганы, ошибка: ', errstr)
         return false
     end
 end
@@ -405,25 +405,25 @@ function load_smart_uk()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с умным розыском!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с умным розыском!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					smart_uk = loaded
-					print('[Justice Helper] Умный розыск инициализирован!')
+					print('[Mentovka Helper] Умный розыск инициализирован!')
 				else
-					print('[Justice Helper] Не удалось открыть файл с умным розыском!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с умным розыском!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с умным розыском!')
-			print('[Justice Helper] Причина: ')
+			print('[Mentovka Helper] Не удалось открыть файл с умным розыском!')
+			print('[Mentovka Helper] Причина: ')
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с умным розыском!')
-		print('[Justice Helper] Причина: этого файла нету в папке '..configDirectory)
+		print('[Mentovka Helper] Не удалось открыть файл с умным розыском!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке '..configDirectory)
 	end
 end
 function save_smart_uk()
@@ -432,10 +432,10 @@ function save_smart_uk()
         local result, encoded = pcall(encodeJson, smart_uk)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Умный розыск сохранён!')
+		print('[Mentovka Helper] Умный розыск сохранён!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить умный розыск, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить умный розыск, ошибка: ', errstr)
         return false
     end
 end
@@ -450,25 +450,25 @@ function load_smart_pdd()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с умным штрафом!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с умным штрафом!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					smart_pdd = loaded
-					print('[Justice Helper] Умный штраф инициализирован!')
+					print('[Mentovka Helper] Умный штраф инициализирован!')
 				else
-					print('[Justice Helper] Не удалось открыть файл с умным штрафом!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с умным штрафом!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с умным штрафом!')
-			print('[Justice Helper] Причина: ', errstr)
+			print('[Mentovka Helper] Не удалось открыть файл с умным штрафом!')
+			print('[Mentovka Helper] Причина: ', errstr)
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с умным штрафом!')
-		print('[Justice Helper] Причина: этого файла нету в папке '..configDirectory)
+		print('[Mentovka Helper] Не удалось открыть файл с умным штрафом!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке '..configDirectory)
 	end
 end
 function save_smart_pdd()
@@ -477,10 +477,10 @@ function save_smart_pdd()
         local result, encoded = pcall(encodeJson, smart_pdd)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Умные штрафы сохранены!')
+		print('[Mentovka Helper] Умные штрафы сохранены!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить умные штрафы, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить умные штрафы, ошибка: ', errstr)
         return false
     end
 end
@@ -555,13 +555,13 @@ function load_commands()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с командами!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с командами!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					if tostring(settings.general.version) ~= tostring(thisScript().version) then 
-						print('[Justice Helper] Обнаружена иная версия, пробую добавить новые команды')
+						print('[Mentovka Helper] Обнаружена иная версия, пробую добавить новые команды')
 						local temp_commands = loaded
 						for category, _ in pairs(commands) do
 							if temp_commands[category] == nil then
@@ -570,7 +570,7 @@ function load_commands()
 							for key, value in pairs(commands[category]) do
 								if temp_commands[category][key] == nil then
 									temp_commands[category][key] = value
-									print('[Justice Helper] Добавляю команду /' .. value.cmd)
+									print('[Mentovka Helper] Добавляю команду /' .. value.cmd)
 								end
 							end
 						end
@@ -580,34 +580,34 @@ function load_commands()
 						-- Додавання перевірки на .bind
 						for _, command in pairs(loaded.commands) do
 							if not command.bind then
-								print('[Justice Helper] Обновляю команду /' .. command.cmd .. ' (поддержка биндов)')
+								print('[Mentovka Helper] Обновляю команду /' .. command.cmd .. ' (поддержка биндов)')
 								command.bind = "{}"
 							end
 						end
 						for _, command in pairs(loaded.commands_manage) do
 							if not command.bind then
-								print('[Justice Helper] Обновляю команду /' .. command.cmd .. ' (поддержка биндов)')
+								print('[Mentovka Helper] Обновляю команду /' .. command.cmd .. ' (поддержка биндов)')
 								command.bind = "{}"
 							end
 						end
 						commands = loaded
 						save_commands()
 					end
-					print('[Justice Helper] Все команды инициализирован!')
+					print('[Mentovka Helper] Все команды инициализирован!')
 					
 				else
-					print('[Justice Helper] Не удалось открыть файл с командами!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с командами!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с командами!')
-			print('[Justice Helper] Причина: ', errstr)
+			print('[Mentovka Helper] Не удалось открыть файл с командами!')
+			print('[Mentovka Helper] Причина: ', errstr)
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с командами!')
-		print('[Justice Helper] Причина: этого файла нету в папке '..configDirectory)
-		print('[Justice Helper] Инициализация стандартных команд...')
+		print('[Mentovka Helper] Не удалось открыть файл с командами!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке '..configDirectory)
+		print('[Mentovka Helper] Инициализация стандартных команд...')
 		save_commands()
 		load_commands()
 	end
@@ -618,10 +618,10 @@ function save_commands()
         local result, encoded = pcall(encodeJson, commands)
         file:write(result and encoded or "")
         file:close()
-		print('[Justice Helper] Ваши команды сохранены!')
+		print('[Mentovka Helper] Ваши команды сохранены!')
         return result
     else
-        print('[Justice Helper] Не удалось сохранить команды хелпера, ошибка: ', errstr)
+        print('[Mentovka Helper] Не удалось сохранить команды хелпера, ошибка: ', errstr)
         return false
     end
 end
@@ -636,25 +636,25 @@ function load_arzvehicles()
             local contents = file:read('*a')
             file:close()
 			if #contents == 0 then
-				print('[Justice Helper] Не удалось открыть файл с моделями каров аризоны!')
-				print('[Justice Helper] Причина: этот файл пустой')
+				print('[Mentovka Helper] Не удалось открыть файл с моделями каров аризоны!')
+				print('[Mentovka Helper] Причина: этот файл пустой')
 			else
 				local result, loaded = pcall(decodeJson, contents)
 				if result then
 					arzvehicles = loaded
-					print('[Justice Helper] Модели кастом каров аризоны инициализированы!')
+					print('[Mentovka Helper] Модели кастом каров аризоны инициализированы!')
 				else
-					print('[Justice Helper] Не удалось открыть файл с моделями каров аризоны!')
-					print('[Justice Helper] Причина: Не удалось декодировать json (ошибка в файле)')
+					print('[Mentovka Helper] Не удалось открыть файл с моделями каров аризоны!')
+					print('[Mentovka Helper] Причина: Не удалось декодировать json (ошибка в файле)')
 				end
 			end
         else
-			print('[Justice Helper] Не удалось открыть файл с моделями каров аризоны!')
-			print('[Justice Helper] Причина: ', errstr)
+			print('[Mentovka Helper] Не удалось открыть файл с моделями каров аризоны!')
+			print('[Mentovka Helper] Причина: ', errstr)
         end
 	else
-		print('[Justice Helper] Не удалось открыть файл с моделями каров аризоны!')
-		print('[Justice Helper] Причина: этого файла нету в папке ' .. configDirectory)
+		print('[Mentovka Helper] Не удалось открыть файл с моделями каров аризоны!')
+		print('[Mentovka Helper] Причина: этого файла нету в папке ' .. configDirectory)
 	end
 end
 load_arzvehicles()
@@ -937,7 +937,7 @@ if isMonetLoader() then
 	ffi.cdef[[ void _Z12AND_OpenLinkPKc(const char* link); ]] -- функция для открытия ссылок
 end
 if not settings.general.autofind_dpi then
-	print('[Justice Helper] Применение авто-размера менюшек...')
+	print('[Mentovka Helper] Применение авто-размера менюшек...')
 	if isMonetLoader() then
 		settings.general.custom_dpi = MONET_DPI_SCALE
 	else
@@ -949,7 +949,7 @@ if not settings.general.autofind_dpi then
 		settings.general.custom_dpi = (width_scale + height_scale) / 2
 	end
 	settings.general.autofind_dpi = true
-	print('[Justice Helper] Установлено значение: ' .. settings.general.custom_dpi)
+	print('[Mentovka Helper] Установлено значение: ' .. settings.general.custom_dpi)
 	save_settings()
 end
 ---------------------------------------------- Mimgui -----------------------------------------------------
@@ -1172,7 +1172,7 @@ local tagReplacements = {
 			end
 			return "" .. getNameOfARZVehicleModel(getCarModel(closest_car)) .. getVehPlateNumberByCarHandle(closest_car) .. CarColorName
 		else
-			sampAddChatMessage("[Justice Helper] {ffffff}Не удалось получить модель ближайшего т/c с водителем!", 0x009EFF)
+			sampAddChatMessage("[Mentovka Helper] {ffffff}Не удалось получить модель ближайшего т/c с водителем!", 0x009EFF)
 			return ' транспортного средства'
 		end
 	end,
@@ -1228,14 +1228,14 @@ local tagReplacements = {
 					end
 					return units
 				else
-					--sampAddChatMessage('[Justice Helper] В вашем авто нету ваших напарников12345678!', -1)
+					--sampAddChatMessage('[Mentovka Helper] В вашем авто нету ваших напарников12345678!', -1)
 					return 'Нету'
 				end
 			else
 				return 'Нету'
 			end
 		else
-			--sampAddChatMessage('[Justice Helper] Вы не находитесь в авто, невозможно получить ваших напарников!', -1)
+			--sampAddChatMessage('[Mentovka Helper] Вы не находитесь в авто, невозможно получить ваших напарников!', -1)
 			return 'Нету'
 		end
 	end,
@@ -1246,11 +1246,11 @@ local tagReplacements = {
 				switchCarSiren(car, not isCarSirenOn(car))
 				return '/me ' .. ( isCarSirenOn(car) and 'включает' or 'выключает') .. ' мигалки в своём транспортном средстве'
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Вы не за рулём!', 0x009EFF)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Вы не за рулём!', 0x009EFF)
 				return (isCarSirenOn(car) and 'Выключи' or 'Врубай') .. ' мигалки!'
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Вы не в автомобиле!', 0x009EFF)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Вы не в автомобиле!', 0x009EFF)
 			return "Кхм"
 		end
 	end
@@ -1381,8 +1381,8 @@ if not isMonetLoader() then
 						sampProcessChatInput('/' .. command.cmd)
 					end
 				end)
-				print('[Justice Helper] Создан хоткей для команды /' .. command.cmd .. ' на клавишу ' .. getNameKeysFrom(command.bind))
-				sampAddChatMessage('[Justice Helper] {ffffff}Создан хоткей для команды ' .. message_color_hex .. '/' .. command.cmd .. ' {ffffff}на клавишу '  .. message_color_hex .. getNameKeysFrom(command.bind), message_color)
+				print('[Mentovka Helper] Создан хоткей для команды /' .. command.cmd .. ' на клавишу ' .. getNameKeysFrom(command.bind))
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Создан хоткей для команды ' .. message_color_hex .. '/' .. command.cmd .. ' {ffffff}на клавишу '  .. message_color_hex .. getNameKeysFrom(command.bind), message_color)
 			end
 		end
 
@@ -1435,19 +1435,19 @@ local NightVision = false
 ------------------------------------------- Main -----------------------------------------------------
 function welcome_message()
 	if not sampIsLocalPlayerSpawned() then 
-		sampAddChatMessage('[Justice Helper] {ffffff}Инициализация хелпера прошла успешно!',message_color)
-		sampAddChatMessage('[Justice Helper] {ffffff}Для полной загрузки хелпера сначало заспавнитесь (войдите на сервер)',message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Инициализация хелпера прошла успешно!',message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Для полной загрузки хелпера сначало заспавнитесь (войдите на сервер)',message_color)
 		repeat wait(0) until sampIsLocalPlayerSpawned()
 	end
-	sampAddChatMessage('[Justice Helper] {ffffff}Загрузка хелпера прошла успешно!', message_color)
-	print('[Justice Helper] Загрузка хелпера прошла успешно!')
-	show_arz_notify('info', 'Justice Helper', "Загрузка хелпера прошла успешно!", 3000)
+	sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка хелпера прошла успешно!', message_color)
+	print('[Mentovka Helper] Загрузка хелпера прошла успешно!')
+	show_arz_notify('info', 'Mentovka Helper', "Загрузка хелпера прошла успешно!", 3000)
 	if isMonetLoader() or settings.general.bind_mainmenu == nil or not settings.general.use_binds then	
-		sampAddChatMessage('[Justice Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
 	elseif hotkey_no_errors and settings.general.bind_mainmenu and settings.general.use_binds then
-		sampAddChatMessage('[Justice Helper] {ffffff}Чтоб открыть меню хелпера нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_mainmenu) .. ' {ffffff}или введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_mainmenu) .. ' {ffffff}или введите команду ' .. message_color_hex .. '/jh', message_color)
 	else
-		sampAddChatMessage('[Justice Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
 	end
 end
 function registerCommandsFrom(array)
@@ -1471,7 +1471,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 					modifiedText = modifiedText:gsub('{arg}', arg or "")
 					arg_check = true
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [аргумент]', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [аргумент]', message_color)
 					play_error_sound()
 				end
 			elseif cmd_arg == '{arg_id}' then
@@ -1483,7 +1483,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 					modifiedText = modifiedText:gsub('%{arg_id%}', arg or "")
 					arg_check = true
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока]', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока]', message_color)
 					play_error_sound()
 				end
 			elseif cmd_arg == '{arg_id} {arg2}' then
@@ -1498,11 +1498,11 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 						modifiedText = modifiedText:gsub('%{arg2%}', arg2 or "")
 						arg_check = true
 					else
-						sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]', message_color)
 						play_error_sound()
 					end
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент]', message_color)
 					play_error_sound()
 				end
             elseif cmd_arg == '{arg_id} {arg2} {arg3}' then
@@ -1518,11 +1518,11 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
                         modifiedText = modifiedText:gsub('%{arg3%}', arg3 or "")
 						arg_check = true
 					else
-						sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент] [аргумент]', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент] [аргумент]', message_color)
 						play_error_sound()
 					end
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент] [аргумент]', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/' .. chat_cmd .. ' [ID игрока] [аргумент] [аргумент]', message_color)
 					play_error_sound()
 				end
 			elseif cmd_arg == '' then
@@ -1534,12 +1534,12 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 					command_pause = false
 					if modifiedText:find('&.+&') then
 						if isMonetLoader() and settings.general.mobile_stop_button then
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
 							CommandStopWindow[0] = true
 						elseif not isMonetLoader() and hotkey_no_errors and settings.general.bind_command_stop and settings.general.use_binds then
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
 						else
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
 						end
 					end
 					local lines = {}
@@ -1553,7 +1553,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 							if isMonetLoader() and settings.general.mobile_stop_button then
 								CommandStopWindow[0] = false
 							end
-							sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды /' .. chat_cmd .. " успешно остановлена!", message_color) 
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды /' .. chat_cmd .. " успешно остановлена!", message_color) 
 							break	
 						else
 							for tag, replacement in pairs(tagReplacements) do
@@ -1588,14 +1588,14 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 								GiveRankMenu[0] = true
 								break
 							elseif line == "{pause}" then
-								sampAddChatMessage('[Justice Helper] {ffffff}Команда /' .. chat_cmd .. ' поставлена на паузу!', message_color)
+								sampAddChatMessage('[Mentovka Helper] {ffffff}Команда /' .. chat_cmd .. ' поставлена на паузу!', message_color)
 								command_pause = true
 								CommandPauseWindow[0] = true
 								while command_pause do
 									wait(0)
 								end
 								if not command_stop then
-									sampAddChatMessage('[Justice Helper] {ffffff}Продолжаю отыгровку команды /' .. chat_cmd, message_color)	
+									sampAddChatMessage('[Mentovka Helper] {ffffff}Продолжаю отыгровку команды /' .. chat_cmd, message_color)	
 								end					
 							else
 								if line_index ~= 1 then wait(cmd_waiting * 1000) end
@@ -1607,7 +1607,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 									if isMonetLoader() and settings.general.mobile_stop_button then
 										CommandStopWindow[0] = false
 									end
-									sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды /' .. chat_cmd .. " успешно остановлена!", message_color) 	
+									sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды /' .. chat_cmd .. " успешно остановлена!", message_color) 	
 									break
 								end
 							end
@@ -1621,7 +1621,7 @@ function register_command(chat_cmd, cmd_arg, cmd_text, cmd_waiting)
 				end)
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1645,7 +1645,7 @@ function find_and_use_command(cmd, cmd_arg)
 		end
 	end
 	if not check then
-		sampAddChatMessage('[Justice Helper] {ffffff}Ошибка, не могу найти бинд для выполнения этой команды!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка, не могу найти бинд для выполнения этой команды!', message_color)
 		play_error_sound()
 		return
 	end
@@ -1657,7 +1657,7 @@ function initialize_commands()
 		if isActiveCommand then 
 			command_stop = true 
 		else 
-			sampAddChatMessage('[Justice Helper] {ffffff}В данный момент нету никакой активной команды/отыгровки!', message_color) 
+			sampAddChatMessage('[Mentovka Helper] {ffffff}В данный момент нету никакой активной команды/отыгровки!', message_color) 
 		end
 	end)
 	sampRegisterChatCommand("sum", function(arg) 
@@ -1667,15 +1667,15 @@ function initialize_commands()
 					player_id = tonumber(arg)
 					SumMenuWindow[0] = true 
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Сначало загрузите/отредактируйте умный розыск в /jh', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умный розыск в /jh', message_color)
 					play_error_sound()
 				end
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/sum [ID игрока]', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/sum [ID игрока]', message_color)
 				play_error_sound()
 			end	
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1686,15 +1686,15 @@ function initialize_commands()
 					player_id = tonumber(arg)
 					TsmMenuWindow[0] = true 
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Сначало загрузите/отредактируйте умные штрафы в /jh', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умные штрафы в /jh', message_color)
 					play_error_sound()
 				end
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/tsm [ID игрока]', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/tsm [ID игрока]', message_color)
 				play_error_sound()
 			end	
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1704,11 +1704,11 @@ function initialize_commands()
 				player_id = tonumber(arg)
 				SobesMenu[0] = not SobesMenu[0]
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/sob [ID игрока]', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/sob [ID игрока]', message_color)
 				play_error_sound()
 			end	
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1724,7 +1724,7 @@ function initialize_commands()
 			InfraredVision = false
 			setInfraredVision(InfraredVision)	
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1740,36 +1740,36 @@ function initialize_commands()
 				sampSendChat('/me снимает с себя инфакрасные очки и убирает их в карман')
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
 	sampRegisterChatCommand("awanted", function() 
 		for i = 1, 10, 1 do
-			sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
 		end
 	end)
 	sampRegisterChatCommand("wanted", function(arg)
 		sampSendChat('/wanted ' .. arg)
-		sampAddChatMessage('[Justice Helper] {ffffff}Лучше используйте /wanteds для автосканирования всего вантеда!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Лучше используйте /wanteds для автосканирования всего вантеда!', message_color)
 	end)
 	sampRegisterChatCommand("meg", function ()
 		MegafonWindow[0] = not MegafonWindow[0]
 	end)
 	sampRegisterChatCommand("afind", function (arg)
 		for i = 1, 10, 1 do
-			sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
 		end
 	end)
 	sampRegisterChatCommand("wanteds", function(arg)
 		if WantedWindow[0] then
 			WantedWindow[0] = false
 			update_wanted_check = false
-			sampAddChatMessage('[Justice Helper] {ffffff}Меню списка преступников закрыто!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Меню списка преступников закрыто!', message_color)
 		elseif not isActiveCommand then
 			lua_thread.create(function()
-				sampAddChatMessage('[Justice Helper] {ffffff}Начинаю сканирование всего /wanted, Ожидайте', message_color)
-				show_arz_notify('info', 'Justice Helper', "Сканирование /wanted...", 2500)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Начинаю сканирование всего /wanted, Ожидайте', message_color)
+				show_arz_notify('info', 'Mentovka Helper', "Сканирование /wanted...", 2500)
 				wanted_new = {}
 				check_wanted = true
 				local max_lvl = (settings.player_info.fraction_tag == 'ФБР' or settings.player_info.fraction_tag == 'FBI') and 7 or 6
@@ -1779,9 +1779,9 @@ function initialize_commands()
 				end
 				check_wanted = false
 				if #wanted_new == 0 then
-					sampAddChatMessage('[Justice Helper] {ffffff}Сейчас на сервере нету игроков с розыском!', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сейчас на сервере нету игроков с розыском!', message_color)
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Сканирование всего /wanted окончено, найдено преступников: ' .. message_color_hex .. #wanted_new, message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сканирование всего /wanted окончено, найдено преступников: ' .. message_color_hex .. #wanted_new, message_color)
 					wanted = wanted_new
 					updwanteds_time = 0
 					updwanteds_last_time = os.time()
@@ -1789,12 +1789,12 @@ function initialize_commands()
 					WantedWindow[0] = true
 					if settings.general.auto_find_wanteds and awanted then
 						search_awanted = true
-						sampAddChatMessage('[Justice Helper - AWANTED] {ffffff}Вы можете закрыть это окно и ввести /awanted', message_color)
+						sampAddChatMessage('[Mentovka Helper - AWANTED] {ffffff}Вы можете закрыть это окно и ввести /awanted', message_color)
 					end
 				end
 			end)
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1803,12 +1803,12 @@ function initialize_commands()
 		if not isActiveCommand then
 			isActiveCommand = true
 			if isMonetLoader() and settings.general.mobile_stop_button then
-				sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
 				CommandStopWindow[0] = true
 			elseif not isMonetLoader() and hotkey_no_errors and settings.general.bind_command_stop and settings.general.use_binds then
-				sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
 			end
 			if sampGetPlayerColor(select(2, sampGetPlayerIdByCharHandle(PLAYER_PED))) == 23486046 then
 				lua_thread.create(function()
@@ -1834,7 +1834,7 @@ function initialize_commands()
 				end)
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1842,7 +1842,7 @@ function initialize_commands()
 		if not isActiveCommand then
 			PatroolMenu[0] = not PatroolMenu[0]
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1856,7 +1856,7 @@ function initialize_commands()
 				sampSendChat("/members")
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1864,7 +1864,7 @@ function initialize_commands()
 		if not isActiveCommand then
 			DeportamentWindow[0] = not DeportamentWindow[0]
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			play_error_sound()
 		end
 	end)
@@ -1877,12 +1877,12 @@ function initialize_commands()
 				lua_thread.create(function()
 					isActiveCommand = true
 					if isMonetLoader() and settings.general.mobile_stop_button then
-						sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
 						CommandStopWindow[0] = true
 					elseif not isMonetLoader() and hotkey_no_errors and settings.general.bind_command_stop and settings.general.use_binds then
-						sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
 					else
-						sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
 					end
 					sampSendChat("/rb Внимание! Через 15 секунд будет спавн транспорта организации.")
 					wait(1500)
@@ -1892,7 +1892,7 @@ function initialize_commands()
 						if isMonetLoader() and settings.general.mobile_stop_button then
 							CommandStopWindow[0] = false
 						end
-						sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды /spcar успешно остановлена!', message_color) 
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды /spcar успешно остановлена!', message_color) 
 						return
 					end
 					sampSendChat("/rb Займите транспорт, иначе он будет заспавнен.")
@@ -1903,7 +1903,7 @@ function initialize_commands()
 						if isMonetLoader() and settings.general.mobile_stop_button then
 							CommandStopWindow[0] = false
 						end
-						sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды /spcar успешно остановлена!', message_color) 
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды /spcar успешно остановлена!', message_color) 
 						return
 					end
 					spawncar_bool = true
@@ -1914,7 +1914,7 @@ function initialize_commands()
 					end
 				end)
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Дождитесь завершения отыгровки предыдущей команды!', message_color)
 			end
 		end)
 		-- Ригистрация всех команд которые есть в json для 9/10
@@ -2031,22 +2031,22 @@ function play_error_sound()
 	if not isMonetLoader() and sampIsLocalPlayerSpawned() then
 		addOneOffSound(getCharCoordinates(PLAYER_PED), 1149)
 	end
-	show_arz_notify('error', 'Justice Helper', "Произошла ошибка!", 1500)
+	show_arz_notify('error', 'Mentovka Helper', "Произошла ошибка!", 1500)
 end
 function show_fast_menu(id)
 	if isParamSampID(id) then 
-		sampAddChatMessage('[Justice Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
 		player_id = tonumber(id)
 		FastMenu[0] = true
 	else
 		if isMonetLoader() or settings.general.bind_fastmenu == nil then
 			if not FastMenuPlayers[0] then
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID]', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID]', message_color)
 			end
 		elseif settings.general.bind_fastmenu and settings.general.use_binds and hotkey_no_errors then
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID] {ffffff}или наведитесь на игрока через ' .. message_color_hex .. 'ПКМ + ' .. getNameKeysFrom(settings.general.bind_fastmenu), message_color) 
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID] {ffffff}или наведитесь на игрока через ' .. message_color_hex .. 'ПКМ + ' .. getNameKeysFrom(settings.general.bind_fastmenu), message_color) 
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID]', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jm [ID]', message_color)
 		end 
 		play_error_sound()
 	end 
@@ -2054,15 +2054,15 @@ end
 function show_leader_fast_menu(id)
 	if isParamSampID(id) then
 		player_id = tonumber(id)
-		sampAddChatMessage('[Justice Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
 		LeaderFastMenu[0] = true
 	else
 		if isMonetLoader() or settings.general.bind_leader_fastmenu == nil then
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID]', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID]', message_color)
 		elseif settings.general.bind_leader_fastmenu and settings.general.use_binds and hotkey_no_errors then
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID] {ffffff}или наведитесь на игрока через ' .. message_color_hex .. 'ПКМ + ' .. getNameKeysFrom(settings.general.bind_leader_fastmenu), message_color) 
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID] {ffffff}или наведитесь на игрока через ' .. message_color_hex .. 'ПКМ + ' .. getNameKeysFrom(settings.general.bind_leader_fastmenu), message_color) 
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID]', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. '/jlm [ID]', message_color)
 		end 
 		play_error_sound()
 	end
@@ -2093,7 +2093,7 @@ function ifCommandPause()
 		if isMonetLoader() and settings.general.mobile_stop_button then
 			CommandStopWindow[0] = false
 		end
-		sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды успешно остановлена!', message_color)  
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды успешно остановлена!', message_color)  
 		return true
 	else
 		return false
@@ -2179,7 +2179,7 @@ function sampGetPlayerIdByNickname(nick)
 	    end
 	end
 	if id == nil then
-		sampAddChatMessage('[Justice Helper] {ffffff}Ошибка: не удалось получить ID игрока!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка: не удалось получить ID игрока!', message_color)
 		id = ''
 	end
 	return id
@@ -2265,7 +2265,7 @@ function getNameOfARZVehicleModel(id)
 			for _, vehicle in ipairs(arzvehicles) do
 				if vehicle.model_id == id then
 					check = true
-					--sampAddChatMessage("[Justice Helper] {ffffff}Самый ближайший транспорт к вам это " .. vehicle.name ..  " [ID " .. id .. "].", message_color)
+					--sampAddChatMessage("[Mentovka Helper] {ffffff}Самый ближайший транспорт к вам это " .. vehicle.name ..  " [ID " .. id .. "].", message_color)
 					return " " .. vehicle.name
 				end
 			end
@@ -2273,15 +2273,15 @@ function getNameOfARZVehicleModel(id)
 				need_download_arzveh = true
 			end
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Не удалось получить модель т/c с ID ' .. id .. "! Причина: ошибка инициализации VehiclesArizona.json", message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Не удалось получить модель т/c с ID ' .. id .. "! Причина: ошибка инициализации VehiclesArizona.json", message_color)
 			need_download_arzveh = true
 		end
 	else
-		sampAddChatMessage('[Justice Helper] {ffffff}Не удалось получить модель т/c с ID ' .. id .. "! Причина: отсуствует файл VehiclesArizona.json", message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Не удалось получить модель т/c с ID ' .. id .. "! Причина: отсуствует файл VehiclesArizona.json", message_color)
 		need_download_arzveh = true
 	end
 	if need_download_arzveh then
-		sampAddChatMessage('[Justice Helper] {ffffff}Пытаюсь скачать файл VehiclesArizona.json в папку ' .. path_arzvehicles, message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Пытаюсь скачать файл VehiclesArizona.json в папку ' .. path_arzvehicles, message_color)
 		download_arzvehicles = true
 		downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartVEH/Vehicles.json', path_arzvehicles)
 		return ' транспортного средства'
@@ -2782,11 +2782,11 @@ function getARZServerName(number)
 	return server
 end
 function check_update()
-	print('[Justice Helper] Начинаю проверку на наличие обновлений...')
-	sampAddChatMessage('[Justice Helper] {ffffff}Начинаю проверку на наличие обновлений...', message_color)
+	print('[Mentovka Helper] Начинаю проверку на наличие обновлений...')
+	sampAddChatMessage('[Mentovka Helper] {ffffff}Начинаю проверку на наличие обновлений...', message_color)
 	local path = configDirectory .. "/Update_Info.json"
 	os.remove(path)
-	local url = 'https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/justice-helper/Update_Info.json'
+	local url = 'https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/Mentovka-helper/Update_Info.json'
 	if isMonetLoader() then
 		downloadToFile(url, path, function(type, pos, total_size)
 			if type == "finished" then
@@ -2795,19 +2795,19 @@ function check_update()
 					local uVer = updateInfo.current_version
 					local uUrl = updateInfo.update_url
 					local uText = updateInfo.update_info
-					print("[Justice Helper] Текущая установленная версия:", thisScript().version)
-					print("[Justice Helper] Текущая версия в облаке:", uVer)
+					print("[Mentovka Helper] Текущая установленная версия:", thisScript().version)
+					print("[Mentovka Helper] Текущая версия в облаке:", uVer)
 					if thisScript().version ~= uVer then
-						print('[Justice Helper] Доступно обновление!')
-						sampAddChatMessage('[Justice Helper] {ffffff}Доступно обновление!', message_color)
+						print('[Mentovka Helper] Доступно обновление!')
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Доступно обновление!', message_color)
 						need_update_helper = true
 						updateUrl = uUrl
 						updateVer = uVer
 						updateInfoText = uText
 						UpdateWindow[0] = true
 					else
-						print('[Justice Helper] Обновление не нужно!')
-						sampAddChatMessage('[Justice Helper] {ffffff}Обновление не нужно, у вас актуальная версия!', message_color)
+						print('[Mentovka Helper] Обновление не нужно!')
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Обновление не нужно, у вас актуальная версия!', message_color)
 					end
 				end
 			end
@@ -2820,19 +2820,19 @@ function check_update()
 					local uVer = updateInfo.current_version
 					local uUrl = updateInfo.update_url
 					local uText = updateInfo.update_info
-					print("[Justice Helper] Текущая установленная версия:", thisScript().version)
-					print("[Justice Helper] Текущая версия в облаке:", uVer)
+					print("[Mentovka Helper] Текущая установленная версия:", thisScript().version)
+					print("[Mentovka Helper] Текущая версия в облаке:", uVer)
 					if thisScript().version ~= uVer then
-						print('[Justice Helper] Доступно обновление!')
-						sampAddChatMessage('[Justice Helper] {ffffff}Доступно обновление!', message_color)
+						print('[Mentovka Helper] Доступно обновление!')
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Доступно обновление!', message_color)
 						need_update_helper = true
 						updateUrl = uUrl
 						updateVer = uVer
 						updateInfoText = uText
 						UpdateWindow[0] = true
 					else
-						print('[Justice Helper] Обновление не нужно!')
-						sampAddChatMessage('[Justice Helper] {ffffff}Обновление не нужно, у вас актуальная версия!', message_color)
+						print('[Mentovka Helper] Обновление не нужно!')
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Обновление не нужно, у вас актуальная версия!', message_color)
 					end
 				end
 			end
@@ -2840,7 +2840,7 @@ function check_update()
 	end
 	function readJsonFile(filePath)
 		if not doesFileExist(filePath) then
-			print("[Justice Helper] Ошибка: Файл " .. filePath .. " не существует")
+			print("[Mentovka Helper] Ошибка: Файл " .. filePath .. " не существует")
 			return nil
 		end
 		local file = io.open(filePath, "r")
@@ -2848,7 +2848,7 @@ function check_update()
 		file:close()
 		local jsonData = decodeJson(content)
 		if not jsonData then
-			print("[Justice Helper] Ошибка: Неверный формат JSON в файле " .. filePath)
+			print("[Mentovka Helper] Ошибка: Неверный формат JSON в файле " .. filePath)
 			return nil
 		end
 		return jsonData
@@ -2939,57 +2939,57 @@ function downloadToFile(url, path, callback, progressInterval)
 	end)
 end
 function downloadFileFromUrlToPath(url, path)
-	print('[Justice Helper] Начинаю скачивание файла в ' .. path)
+	print('[Mentovka Helper] Начинаю скачивание файла в ' .. path)
 	if isMonetLoader() then
 		downloadToFile(url, path, function(type, pos, total_size)
 			if type == "downloading" then
 				--print(("Скачивание %d/%d"):format(pos, total_size))
 			elseif type == "finished" then
 				if download_helper then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка новой версии хелпера завершена успешно! Перезагрузка..',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка новой версии хелпера завершена успешно! Перезагрузка..',  message_color)
 					reload_script = true
 					thisScript():unload()
 				elseif download_smartuk then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка умной выдачи розыска для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Для выдачи розыска используйте ' .. message_color_hex .. '/sum ID',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка умной выдачи розыска для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Для выдачи розыска используйте ' .. message_color_hex .. '/sum ID',  message_color)
 					download_smartuk = false
 					load_smart_uk()
 				elseif download_smartpdd then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка умной выдачи штрафов для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Для выдачи штрафов используйте ' .. message_color_hex .. '/tsm ID',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка умной выдачи штрафов для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Для выдачи штрафов используйте ' .. message_color_hex .. '/tsm ID',  message_color)
 					download_smartpdd = false
 					load_smart_pdd()
 				elseif download_arzvehicles then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка списка моделей кастом каров аризоны заверешена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Повторно используйте нужную команду которая требует определение модели т/c.',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка списка моделей кастом каров аризоны заверешена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Повторно используйте нужную команду которая требует определение модели т/c.',  message_color)
 					download_arzvehicles = false
 					load_arzvehicles()
 				end
 			elseif type == "error" then
-				sampAddChatMessage('[Justice Helper] {ffffff}Ошибка загрузки: ' .. pos,  message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка загрузки: ' .. pos,  message_color)
 			end
 		end)
 	else
 		downloadUrlToFile(url, path, function(id, status)
 			if status == 6 then -- ENDDOWNLOADDATA
 				if download_helper then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка новой версии хелпера завершена успешно! Перезагрузка..',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка новой версии хелпера завершена успешно! Перезагрузка..',  message_color)
 					reload_script = true
 					thisScript():unload()
 				elseif download_smartuk then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка умной выдачи розыска для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Для выдачи розыска используйте ' .. message_color_hex .. '/sum ID',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка умной выдачи розыска для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Для выдачи розыска используйте ' .. message_color_hex .. '/sum ID',  message_color)
 					
 					download_smartuk = false
 					load_smart_uk()
 				elseif download_smartpdd then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка умной выдачи штрафов для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Для выдачи штрафов используйте ' .. message_color_hex .. '/tsm ID',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка умной выдачи штрафов для сервера ' .. getARZServerName(getARZServerNumber()) .. '[' .. getARZServerNumber() ..  '] завершена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Для выдачи штрафов используйте ' .. message_color_hex .. '/tsm ID',  message_color)
 					download_smartpdd = false
 					load_smart_pdd()
 				elseif download_arzvehicles then
-					sampAddChatMessage('[Justice Helper] {ffffff}Загрузка списка моделей кастом каров аризоны заверешена успешно!',  message_color)
-					sampAddChatMessage('[Justice Helper] {ffffff}Повторно используйте нужную команду которая требует определение модели т/c.',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Загрузка списка моделей кастом каров аризоны заверешена успешно!',  message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Повторно используйте нужную команду которая требует определение модели т/c.',  message_color)
 					download_arzvehicles = false
 					load_arzvehicles()
 				end
@@ -3040,21 +3040,21 @@ end
 local sampev = require('samp.events')
 function sampev.onShowTextDraw(id, data)
 	if data.text:find('~n~~n~~n~~n~~n~~n~~n~~n~~w~Style: ~r~Sport!') then
-		sampAddChatMessage('[Justice Helper] {ffffff}Активирован режим езды Sport!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Активирован режим езды Sport!', message_color)
 		return false
 	end
 	if data.text:find('~n~~n~~n~~n~~n~~n~~n~~n~~w~Style: ~g~Comfort!') then
-		sampAddChatMessage('[Justice Helper] {ffffff}Активирован режим езды Comfort!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Активирован режим езды Comfort!', message_color)
 		return false
 	end
 end
 function sampev.onDisplayGameText(style,time,text)
 	if text:find('~n~~n~~n~~n~~n~~n~~n~~n~~w~Style: ~r~Sport!') then
-		sampAddChatMessage('[Justice Helper] {ffffff}Активирован режим езды Sport!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Активирован режим езды Sport!', message_color)
 		return false
 	end
 	if text:find('~n~~n~~n~~n~~n~~n~~n~~n~~w~Style: ~g~Comfort!') then
-		sampAddChatMessage('[Justice Helper] {ffffff}Активирован режим езды Comfort!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Активирован режим езды Comfort!', message_color)
 		return false
 	end
 end
@@ -3065,10 +3065,10 @@ function sampev.onSendTakeDamage(playerId,damage,weapon)
 		if isParamSampID(playerId) and playerId1 ~= playerId2 and tonumber(playerId) ~= 0 and weapon then
 			local weapon_name = get_name_weapon(weapon)
 			if weapon_name then
-				sampAddChatMessage('[Justice Helper] {ffffff}Игрок ' .. sampGetPlayerNickname(playerId) .. '[' .. playerId .. '] напал на вас используя ' .. weapon_name .. '['.. weapon .. ']!', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Игрок ' .. sampGetPlayerNickname(playerId) .. '[' .. playerId .. '] напал на вас используя ' .. weapon_name .. '['.. weapon .. ']!', message_color)
 				--sampSendChat(' /rep Следите за ID ' .. playerId ..', напал на меня используя ' .. weapon_name)
 				if ComboPatroolCode[0] ~= 1 then
-					sampAddChatMessage('[Justice Helper - Ассистент] {ffffff}Ваш ситуационный код изменён на CODE 0.', message_color)
+					sampAddChatMessage('[Mentovka Helper - Ассистент] {ffffff}Ваш ситуационный код изменён на CODE 0.', message_color)
 					ComboPatroolCode[0] = 1
 					patrool_code = combo_patrool_code_list[ComboPatroolCode[0] + 1]
 				end
@@ -3138,12 +3138,12 @@ function sampev.onServerMessage(color,text)
 			lua_thread.create(function ()
 				wait(50)
 				if Name == MyName then
-					sampAddChatMessage('[Justice Helper] {ffffff}Увольняю игрока ' .. sampGetPlayerNickname(PlayerID) .. '!', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Увольняю игрока ' .. sampGetPlayerNickname(PlayerID) .. '!', message_color)
 					auto_uval_checker = false
 					temp = PlayerID .. ' ПСЖ'
 					find_and_use_command("/uninvite {arg_id} {arg2}", temp)
 				else
-					sampAddChatMessage('[Justice Helper] {ffffff}Другой заместитель/лидер уже увольняет игрока ' .. sampGetPlayerNickname(PlayerID) .. '!', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Другой заместитель/лидер уже увольняет игрока ' .. sampGetPlayerNickname(PlayerID) .. '!', message_color)
 					auto_uval_checker = false
 				end
 			end)
@@ -3155,13 +3155,13 @@ function sampev.onServerMessage(color,text)
 			if message:find('Прошу обьявить в розыск (%d) степени дело N(%d+)%. Причина%: (.+)') then
 				local lvl, id, reason = message:match('Прошу обьявить в розыск (%d) степени дело N(%d+)%. Причина%: (.+)')
 				form_su = id .. ' ' .. lvl .. ' ' .. reason
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте /givefsu ' .. playerID .. ' чтобы выдать розыск по запросу офицера ' .. name, message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте /givefsu ' .. playerID .. ' чтобы выдать розыск по запросу офицера ' .. name, message_color)
 			end
 		elseif text:find("%[(.-)%] %[(.-)%] (.+) (.-)%[(.-)%]: (.+)") and color == 766526463 then -- /r или /f с тэгом
 			local tag, tag2, rank, name, playerID, message = string.match(text, "%[(.-)%] %[(.-)%] (.+) (.-)%[(.-)%]: (.+)")
 			local lvl, id, reason = message:match('Прошу обьявить в розыск (%d) степени дело N(%d+)%. Причина%: (.+)')
 				form_su = id .. ' ' .. lvl .. ' ' .. reason
-				sampAddChatMessage('[Justice Helper] {ffffff}Используйте /givefsu ' .. playerID .. ' чтобы выдать розыск по запросу офицера ' .. name, message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте /givefsu ' .. playerID .. ' чтобы выдать розыск по запросу офицера ' .. name, message_color)
 		end
 	end
 	if (text:find("У (.+) отсутствует трудовая книжка. Вы можете выдать ему книжку с помощью команды /givewbook") and tonumber(settings.player_info.fraction_rank_number) >= 9) then
@@ -3172,17 +3172,17 @@ function sampev.onServerMessage(color,text)
 				cmd =  '/' .. command.cmd
 			end
 		end
-		sampAddChatMessage('[Justice Helper] {ffffff}У игрока ' .. nick .. ' нету трудовой книжки, выдайте её используя ' .. message_color_hex .. cmd .. ' ' .. sampGetPlayerIdByNickname(nick), message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}У игрока ' .. nick .. ' нету трудовой книжки, выдайте её используя ' .. message_color_hex .. cmd .. ' ' .. sampGetPlayerIdByNickname(nick), message_color)
 		return false
 	end
 	if (settings.general.auto_mask) then
 		if text:find('Время действия маски истекло, вам пришлось ее выбросить.') then
-			sampAddChatMessage('[Justice Helper] {ffffff}Время действия маски истекло! Автоматически надеваю новую', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Время действия маски истекло! Автоматически надеваю новую', message_color)
 			sampProcessChatInput("/mask")
 			return false
 		elseif (text:find('Время действия маски (%d+) минут, после исхода времени ее придётся выбросить.')) then
 			local min = text:match('Время действия маски (%d+) минут, после исхода времени ее придётся выбросить.')
-			sampAddChatMessage('[Justice Helper] {ffffff}Время действия маски ' .. min .. ' минут, после исхода времени автоматически надеву новую!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Время действия маски ' .. min .. ' минут, после исхода времени автоматически надеву новую!', message_color)
 			return false
 		end
 	end 
@@ -3197,24 +3197,24 @@ function sampev.onServerMessage(color,text)
 		return false
 	end
 	if text:find("Номера телефонов государственных служб:") then
-		sampAddChatMessage('[Justice Helper] {ffffff}Номера телефонов государственных служб:', message_color)
-		sampAddChatMessage('[Justice Helper] {ffffff}111 Баланс | 60 Время | 911 МЮ | 912 МЗ | 913 Такси | 914 Мехи | 8828 Банк | 997 Дома', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Номера телефонов государственных служб:', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}111 Баланс | 60 Время | 911 МЮ | 912 МЗ | 913 Такси | 914 Мехи | 8828 Банк | 997 Дома', message_color)
 		return false
 	end
 	if text:find ('{FFFFFF}Время действия маски 20 минут, после исхода времени ее придётся выбросить.') then
-		sampAddChatMessage('[Justice Helper] {ffffff}Время действия маски 20 минут, после исхода времени автоматически надену новую', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Время действия маски 20 минут, после исхода времени автоматически надену новую', message_color)
 		return false
 	end
 	if text:find("Вы успешно надели маску") then
 		maska = true
-		sampAddChatMessage('[Justice Helper] {ffffff}Вы надели маску', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Вы надели маску', message_color)
 		return false
 	end
 	if text:find("Теперь вы в маске") then
 		return false
 	end
 	if text:find("Вы успешно выкинули маску") or text:find("Вы сняли маску") then
-		sampAddChatMessage('[Justice Helper] {ffffff}Вы сняли маску!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Вы сняли маску!', message_color)
 		return false
 	end
 	if text:find('%[Ошибка%] %{FFFFFF%}Используй: %/wanted %[уровень розыска 1%-6%]') and check_wanted then
@@ -3329,19 +3329,19 @@ function sampev.onShowDialog(dialogid, style, title, button1, button2, text)
 		if text:find("{FFFFFF}Имя: {B83434}%[(.-)]") then
 			settings.player_info.name_surname = TranslateNick(text:match("{FFFFFF}Имя: {B83434}%[(.-)]"))
 			input_name_surname = imgui.new.char[256](u8(settings.player_info.name_surname))
-			sampAddChatMessage('[Justice Helper] {ffffff}Ваше Имя и Фамилия обнаружены, вы - ' .. settings.player_info.name_surname, message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Ваше Имя и Фамилия обнаружены, вы - ' .. settings.player_info.name_surname, message_color)
 		end
 		if text:find("{FFFFFF}Пол: {B83434}%[(.-)]") then
 			settings.player_info.sex = text:match("{FFFFFF}Пол: {B83434}%[(.-)]")
-			sampAddChatMessage('[Justice Helper] {ffffff}Ваш пол обнаружен, вы - ' .. settings.player_info.sex, message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Ваш пол обнаружен, вы - ' .. settings.player_info.sex, message_color)
 		end
 		if text:find("{FFFFFF}Организация: {B83434}%[(.-)]") then
 			settings.player_info.fraction = text:match("{FFFFFF}Организация: {B83434}%[(.-)]")
 			if settings.player_info.fraction == 'Не имеется' then
-				sampAddChatMessage('[Justice Helper] {ffffff}Вы не состоите в организации!',message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Вы не состоите в организации!',message_color)
 				settings.player_info.fraction_tag = "Неизвестно"
 			else
-				sampAddChatMessage('[Justice Helper] {ffffff}Ваша организация обнаружена, это: '..settings.player_info.fraction, message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Ваша организация обнаружена, это: '..settings.player_info.fraction, message_color)
 				if settings.player_info.fraction == 'Полиция ЛС' or settings.player_info.fraction == 'Полиция LS' then
 					settings.player_info.fraction_tag = 'ЛСПД'
 				elseif settings.player_info.fraction == 'Полиция ЛВ' or settings.player_info.fraction == 'Полиция LV' then
@@ -3364,12 +3364,12 @@ function sampev.onShowDialog(dialogid, style, title, button1, button2, text)
 				settings.deportament.dep_tag1 = '[' .. settings.player_info.fraction_tag .. ']'
 				input_dep_tag1 = imgui.new.char[32](u8(settings.deportament.dep_tag1))
 				input_fraction_tag = imgui.new.char[256](u8(settings.player_info.fraction_tag))
-				sampAddChatMessage('[Justice Helper] {ffffff}Вашей организации присвоен тег '..settings.player_info.fraction_tag .. ". Но вы можете изменить его.", message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Вашей организации присвоен тег '..settings.player_info.fraction_tag .. ". Но вы можете изменить его.", message_color)
 			end
 		end
 		if text:find("{FFFFFF}Должность: {B83434}(.+)%((%d+)%)") then
 			settings.player_info.fraction_rank, settings.player_info.fraction_rank_number = text:match("{FFFFFF}Должность: {B83434}(.+)%((%d+)%)(.+)Уровень розыска")
-			sampAddChatMessage('[Justice Helper] {ffffff}Ваша должность обнаружена, это: '..settings.player_info.fraction_rank.." ("..settings.player_info.fraction_rank_number..")", message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Ваша должность обнаружена, это: '..settings.player_info.fraction_rank.." ("..settings.player_info.fraction_rank_number..")", message_color)
 			if tonumber(settings.player_info.fraction_rank_number) >= 9 then
 				settings.general.auto_uval = true
 				initialize_commands()
@@ -3377,7 +3377,7 @@ function sampev.onShowDialog(dialogid, style, title, button1, button2, text)
 		else
 			settings.player_info.fraction_rank = "Неизвестно"
 			settings.player_info.fraction_rank_number = 0
-			sampAddChatMessage('[Justice Helper] {ffffff}Произошла ошибка, не могу получить ваш ранг!',message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Произошла ошибка, не могу получить ваш ранг!',message_color)
 		end
 		save_settings()
 		sampSendDialogResponse(dialogid, 0,0,0)
@@ -3481,7 +3481,7 @@ function sampev.onShowDialog(dialogid, style, title, button1, button2, text)
 			MembersWindow[0] = true
 		else
 			sampSendDialogResponse(dialogid, 0, 0, 0)
-			sampAddChatMessage('[Justice Helper]{ffffff} Список сотрудников пуст!', message_color)
+			sampAddChatMessage('[Mentovka Helper]{ffffff} Список сотрудников пуст!', message_color)
 			members_check = false
         end
         return false
@@ -3517,7 +3517,7 @@ function sampev.onPlayerChatBubble(player_id, color, distance, duration, message
 			local x, y, z = getCharCoordinates(handle)
 			local mx, my, mz = getCharCoordinates(PLAYER_PED)
 			local dist = getDistanceBetweenCoords3d(mx, my, mz, x, y, z)
-			sampAddChatMessage('[Justice Helper] {ffffff}Внимание! Игрок ' .. nick .. '[' .. sampGetPlayerIdByNickname(nick) .. '] использует скрепки и начинает взламывать наручники!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Внимание! Игрок ' .. nick .. '[' .. sampGetPlayerIdByNickname(nick) .. '] использует скрепки и начинает взламывать наручники!', message_color)
 		end
 	end
 end
@@ -3580,12 +3580,12 @@ function give_rank()
 					lua_thread.create(function()
 						isActiveCommand = true
 						if isMonetLoader() and settings.general.mobile_stop_button then
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите кнопку внизу экрана', message_color)
 							CommandStopWindow[0] = true
 						elseif not isMonetLoader() and hotkey_no_errors and settings.general.bind_command_stop and settings.general.use_binds then
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop {ffffff}или нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_command_stop), message_color)
 						else
-							sampAddChatMessage('[Justice Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Чтобы остановить отыгровку команды используйте ' .. message_color_hex .. '/stop', message_color)
 						end
 						local lines = {}
 						for line in string.gmatch(modifiedText, "[^&]+") do
@@ -3598,7 +3598,7 @@ function give_rank()
 								if isMonetLoader() and settings.general.mobile_stop_button then
 									CommandStopWindow[0] = false
 								end
-								sampAddChatMessage('[Justice Helper] {ffffff}Отыгровка команды /' .. command.cmd .. " успешно остановлена!", message_color) 
+								sampAddChatMessage('[Mentovka Helper] {ffffff}Отыгровка команды /' .. command.cmd .. " успешно остановлена!", message_color) 
 								return 
 							end
 							if wait_tag then
@@ -3627,8 +3627,8 @@ function give_rank()
 				end
 			end
 			if not command_find then
-				sampAddChatMessage('[Justice Helper] {ffffff}Бинд для изменения ранга отсутствует либо отключён!', message_color)
-				sampAddChatMessage('[Justice Helper] {ffffff}Попробуйте сбросить настройки хелпера!', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Бинд для изменения ранга отсутствует либо отключён!', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Попробуйте сбросить настройки хелпера!', message_color)
 				sampSendChat('/giverank ' .. player_id .. " " .. giverank[0])
 			end
 end
@@ -3638,7 +3638,7 @@ imgui.OnFrame(
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
 		imgui.SetNextWindowSize(imgui.ImVec2(600 * settings.general.custom_dpi, 425	* settings.general.custom_dpi), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .. " Justice Helper##main", MainWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize )
+		imgui.Begin(fa.BUILDING_SHIELD .. " Mentovka Helper##main", MainWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize )
 		change_dpi()
 		if imgui.BeginTabBar('пон') then	
 			if imgui.BeginTabItem(fa.HOUSE..u8' Главное меню') then
@@ -3796,7 +3796,7 @@ imgui.OnFrame(
 						imgui.BeginChild('##ai', imgui.ImVec2(589 * settings.general.custom_dpi, 355 * settings.general.custom_dpi), true)
 						local function close()
 							for i = 1, 10, 1 do
-								sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+								sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
 							end
 							imgui.CloseCurrentPopup()
 						end
@@ -4182,7 +4182,7 @@ imgui.OnFrame(
 						if imgui.Button(fa.CIRCLE_PLUS .. u8' Создать новую команду##new_cmd',imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
 							if #commands.commands >= 50 then
 								for i = 1, 10, 1 do
-									sampAddChatMessage('[Justice Helper] {ffffff}Лимит FREE версии на 50 команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+									sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 50 команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
 								end
 							else
 								local new_cmd = {cmd = '', description = '', text = '', arg = '', enable = true, waiting = '1.500', bind = "{}" }
@@ -4243,7 +4243,7 @@ imgui.OnFrame(
 											save_settings()
 										else
 											settings.general.auto_uval = false
-											sampAddChatMessage('[Justice Helper] {ffffff}Эта Функция доступна только лидеру и заместителям!',message_color)
+											sampAddChatMessage('[Mentovka Helper] {ffffff}Эта Функция доступна только лидеру и заместителям!',message_color)
 										end
 									end
 								end
@@ -4360,7 +4360,7 @@ imgui.OnFrame(
 
 								if #commands.commands_manage >= 15 then
 									for i = 1, 10, 1 do
-										sampAddChatMessage('[Justice Helper] {ffffff}Лимит FREE версии на 15 лидер.команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+										sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 15 лидер.команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
 									end
 								else
 									local new_cmd = {cmd = '', description = '', text = '', arg = '', enable = true, waiting = '1.500', bind = "{}" }
@@ -4509,9 +4509,9 @@ imgui.OnFrame(
 					if imgui.Button(fa.DOWNLOAD .. u8' Загрузить ##smartuk') then
 						download_smartuk = true
 						downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartUK/' .. getARZServerNumber() .. '/SmartUK.json', path_uk)
-						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Justice Helper - Оповещение##donwloadsmartuk')
+						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartuk')
 					end
-					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Justice Helper - Оповещение##donwloadsmartuk', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
+					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartuk', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
 						if download_smartuk then
 							change_dpi()
 							imgui.CenterText(u8'Идёт скачивание умного розыска для сервера ' .. getARZServerName(getARZServerNumber()) .. "[" .. getARZServerNumber() .. ']')
@@ -4555,9 +4555,9 @@ imgui.OnFrame(
 							end
 							imgui.SameLine()
 							if imgui.Button(fa.TRASH_CAN .. '##' .. chapter_index) then
-								imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##' .. chapter_index)
+								imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##' .. chapter_index)
 							end
-							if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##' .. chapter_index, _, imgui.WindowFlags.NoResize ) then
+							if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##' .. chapter_index, _, imgui.WindowFlags.NoResize ) then
 								change_dpi()
 								imgui.CenterText(u8'Вы действительно хотите удалить пункт?')
 								imgui.CenterText(u8(chapter.name))
@@ -4616,16 +4616,16 @@ imgui.OnFrame(
 														save_smart_uk()
 														imgui.CloseCurrentPopup()
 													else
-														sampAddChatMessage('[Justice Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
+														sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
 													end
 												end
 												imgui.EndPopup()
 											end
 											imgui.SameLine()
 											if imgui.Button(fa.TRASH_CAN .. '##' .. chapter_index .. '##' .. index) then
-												imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##' .. chapter_index .. '##' .. index)
+												imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##' .. chapter_index .. '##' .. index)
 											end
-											if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##' .. chapter_index .. '##' .. index, _, imgui.WindowFlags.NoResize ) then
+											if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##' .. chapter_index .. '##' .. index, _, imgui.WindowFlags.NoResize ) then
 												change_dpi()
 												imgui.CenterText(u8'Вы действительно хотите удалить подпункт?')
 												imgui.CenterText(u8(item.text))
@@ -4681,7 +4681,7 @@ imgui.OnFrame(
 											save_smart_uk()
 											imgui.CloseCurrentPopup()
 										else
-											sampAddChatMessage('[Justice Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
+											sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
 										end
 									end
 									imgui.EndPopup()
@@ -4737,9 +4737,9 @@ imgui.OnFrame(
 					if imgui.Button(fa.DOWNLOAD .. u8' Загрузить ##smartpdd') then
 						download_smartpdd = true
 						downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartPDD/' .. getARZServerNumber() .. '/SmartPDD.json', path_pdd)
-						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Justice Helper - Оповещение##donwloadsmartpdd')
+						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartpdd')
 					end
-					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Justice Helper - Оповещение##donwloadsmartpdd', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
+					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartpdd', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
 						if download_smartpdd then
 							change_dpi()
 							imgui.CenterText(u8'Идёт скачивание умных штрафов для сервера ' .. getARZServerName(getARZServerNumber()) .. "[" .. getARZServerNumber() .. ']')
@@ -4783,9 +4783,9 @@ imgui.OnFrame(
 							end
 							imgui.SameLine()
 							if imgui.Button(fa.TRASH_CAN .. '##smartpdd' .. chapter_index) then
-								imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##smartpdd' .. chapter_index)
+								imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##smartpdd' .. chapter_index)
 							end
-							if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##smartpdd' .. chapter_index, _, imgui.WindowFlags.NoResize ) then
+							if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##smartpdd' .. chapter_index, _, imgui.WindowFlags.NoResize ) then
 								change_dpi()
 								imgui.CenterText(u8'Вы действительно хотите удалить пункт?')
 								imgui.CenterText(u8(chapter.name))
@@ -4844,16 +4844,16 @@ imgui.OnFrame(
 														save_smart_pdd()
 														imgui.CloseCurrentPopup()
 													else
-														sampAddChatMessage('[Justice Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
+														sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
 													end
 												end
 												imgui.EndPopup()
 											end
 											imgui.SameLine()
 											if imgui.Button(fa.TRASH_CAN .. '##' .. chapter_index .. '###smartpdd' .. index) then
-												imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##smartpdd' .. chapter_index .. '##' .. index)
+												imgui.OpenPopup(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##smartpdd' .. chapter_index .. '##' .. index)
 											end
-											if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Justice_Helper - Предупреждение ##smartpdd' .. chapter_index .. '##' .. index, _, imgui.WindowFlags.NoResize ) then
+											if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Mentovka_Helper - Предупреждение ##smartpdd' .. chapter_index .. '##' .. index, _, imgui.WindowFlags.NoResize ) then
 												change_dpi()
 												imgui.CenterText(u8'Вы действительно хотите удалить подпункт?')
 												imgui.CenterText(u8(item.text))
@@ -4910,7 +4910,7 @@ imgui.OnFrame(
 											save_smart_pdd()
 											imgui.CloseCurrentPopup()
 										else
-											sampAddChatMessage('[Justice Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
+											sampAddChatMessage('[Mentovka Helper] {ffffff}Ошибка в указанных данных, исправьте!', message_color)
 										end
 									end
 									imgui.EndPopup()
@@ -5041,7 +5041,7 @@ imgui.OnFrame(
 				if imgui.Button(fa.CIRCLE_PLUS .. u8' Создать новую заметку', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
 					if #notes.note >= 5 then
 						for i = 1, 10, 1 do
-							sampAddChatMessage('[Justice Helper] {ffffff}Лимит FREE версии на 5 заметок, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 5 заметок, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
 						end
 					else
 						local new_note = {note_name = "Новая заметка", note_text = "Текст вашей новой заметки" }
@@ -5063,7 +5063,7 @@ imgui.OnFrame(
 				imgui.SameLine()
 				if imgui.SmallButton(u8'Проверить обновления') then
 					if string.rupper(settings.general.version):find('VIP') then
-						sampAddChatMessage('[Justice Helper] {ffffff}Проверка и установка обновлений недоступна в VIP версии!', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Проверка и установка обновлений недоступна в VIP версии!', message_color)
 					else
 						check_update()
 					end
@@ -5142,7 +5142,7 @@ imgui.OnFrame(
 					if imgui.SmallButton(fa.CIRCLE_ARROW_RIGHT .. u8' Применить и сохранить') then
 						settings.general.custom_dpi = slider_dpi[0]
 						save_settings()
-						sampAddChatMessage('[Justice Helper] {ffffff}Перезагрузка скрипта для пременения размера окон...', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Перезагрузка скрипта для пременения размера окон...', message_color)
 						reload_script = true
 						thisScript():reload()
 					end
@@ -5167,9 +5167,9 @@ imgui.OnFrame(
 					if imgui.Button(fa.POWER_OFF .. u8' Да, выгрузить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
 						reload_script = true
 						play_error_sound()
-						sampAddChatMessage('[Justice Helper] {ffffff}Хелпер приостановил свою работу до следущего входа в игру!', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Хелпер приостановил свою работу до следущего входа в игру!', message_color)
 						if not isMonetLoader() then 
-							sampAddChatMessage('[Justice Helper] {ffffff}Либо используйте ' .. message_color_hex .. 'CTRL {ffffff}+ ' .. message_color_hex .. 'R {ffffff}чтобы запустить хелпер.', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Либо используйте ' .. message_color_hex .. 'CTRL {ffffff}+ ' .. message_color_hex .. 'R {ffffff}чтобы запустить хелпер.', message_color)
 						end
 						thisScript():unload()
 					end
@@ -5213,15 +5213,15 @@ imgui.OnFrame(
 				end
 				if imgui.BeginPopupModal(fa.TRIANGLE_EXCLAMATION .. u8' Предупреждение ##delete', _, imgui.WindowFlags.NoResize ) then
 					change_dpi()
-					imgui.CenterText(u8'Вы действительно хотите удалить Justice Helper?')
+					imgui.CenterText(u8'Вы действительно хотите удалить Mentovka Helper?')
 					imgui.Separator()
 					if imgui.Button(fa.CIRCLE_XMARK .. u8' Нет, отменить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
 						imgui.CloseCurrentPopup()
 					end
 					imgui.SameLine()
 					if imgui.Button(fa.TRASH_CAN .. u8' Да, я хочу удалить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
-						sampAddChatMessage('[Justice Helper] {ffffff}Хелпер полностю удалён из вашего устройства!', message_color)
-						sampShowDialog(999999, message_color_hex .. "Justice Helper", "Вы успешно удалили Justice Helper из своего устройства.\nЕсли удаление связано с негативным опытом использования, и вы сталкивались с багами или проблемами, то\nсообщите мне что именно заставило вас удалить хелпер на нашем Discord сервере или на форуме BlastHack\n\nDiscord: https://discord.com/invite/qBPEYjfNhv\nBlastHack: https://www.blast.hk/threads/195388/\nTelegram @mtgmods\n\nЕсли что, вы можете заново скачать и установить хелпер в любой момент :)", "Закрыть", '', 0)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Хелпер полностю удалён из вашего устройства!', message_color)
+						sampShowDialog(999999, message_color_hex .. "Mentovka Helper", "Вы успешно удалили Mentovka Helper из своего устройства.\nЕсли удаление связано с негативным опытом использования, и вы сталкивались с багами или проблемами, то\nсообщите мне что именно заставило вас удалить хелпер на нашем Discord сервере или на форуме BlastHack\n\nDiscord: https://discord.com/invite/qBPEYjfNhv\nBlastHack: https://www.blast.hk/threads/195388/\nTelegram @mtgmods\n\nЕсли что, вы можете заново скачать и установить хелпер в любой момент :)", "Закрыть", '', 0)
 						reload_script = true
 						os.remove(path_helper)
 						os.remove(path_uk)
@@ -5596,16 +5596,16 @@ imgui.OnFrame(
 		if ComboTags[0] == 0 then
 			if imgui.Button(fa.KEYBOARD .. u8' Бинд (для ПК)', imgui.ImVec2(imgui.GetMiddleButtonX(5), 0)) then
 				if isMonetLoader() then
-					sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступа только на ПК!', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступа только на ПК!', message_color)
 				else
 					if hotkey_no_errors then
 						if settings.general.use_binds then 
 							imgui.OpenPopup(fa.KEYBOARD .. u8' Бинд для команды /' .. binder_data.change_cmd)
 						else
-							sampAddChatMessage('[Justice Helper] {ffffff}Сначало включите рабоспособность хоткеев в Команды и отыгровки - Доп. функии', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало включите рабоспособность хоткеев в Команды и отыгровки - Доп. функии', message_color)
 						end
 					else
-						sampAddChatMessage('[Justice Helper] {ffffff}Данная функция недоступа, причина отсуствуют файлы библиотеки mimgui_hotkeys!', message_color)
+						sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция недоступа, причина отсуствуют файлы библиотеки mimgui_hotkeys!', message_color)
 					end
 				end
 			end
@@ -5622,7 +5622,7 @@ imgui.OnFrame(
 			end
 		else
 			if imgui.Button(fa.KEYBOARD .. u8' Бинд (для ПК)', imgui.ImVec2(imgui.GetMiddleButtonX(5), 0)) then
-				sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступа только если команда "Без аргументов"', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступа только если команда "Без аргументов"', message_color)
 			end
 		end
 
@@ -5640,7 +5640,7 @@ imgui.OnFrame(
 				imgui.SetCursorPosX(width / 2 - calc.x / 2)
 				if hotkeyObject:ShowHotKey() then
 					binder_data.change_bind = encodeJson(hotkeyObject:GetHotKey())
-					sampAddChatMessage('[Justice Helper] {ffffff}Создан хоткей для команды ' .. message_color_hex .. '/' .. binder_data.change_cmd .. ' {ffffff}на клавишу '  .. message_color_hex .. getNameKeysFrom(binder_data.change_bind), message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Создан хоткей для команды ' .. message_color_hex .. '/' .. binder_data.change_cmd .. ' {ffffff}на клавишу '  .. message_color_hex .. getNameKeysFrom(binder_data.change_bind), message_color)
 				end
 			else
 				local hotkeyName = binder_data.change_cmd.. "HotKey"
@@ -5695,15 +5695,15 @@ imgui.OnFrame(
 						command.enable = true
 						save_commands()
 						if command.arg == '' then
-							sampAddChatMessage('[Justice Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' {ffffff}успешно сохранена!', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' {ffffff}успешно сохранена!', message_color)
 						elseif command.arg == '{arg}' then
-							sampAddChatMessage('[Justice Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [аргумент] {ffffff}успешно сохранена!', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [аргумент] {ffffff}успешно сохранена!', message_color)
 						elseif command.arg == '{arg_id}' then
-							sampAddChatMessage('[Justice Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] {ffffff}успешно сохранена!', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] {ffffff}успешно сохранена!', message_color)
 						elseif command.arg == '{arg_id} {arg2}' then
-							sampAddChatMessage('[Justice Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] [аргумент] {ffffff}успешно сохранена!', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] [аргумент] {ffffff}успешно сохранена!', message_color)
 						elseif command.arg == '{arg_id} {arg2} {arg3}' then
-							sampAddChatMessage('[Justice Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] [аргумент] [аргумент] {ffffff}успешно сохранена!', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Команда ' .. message_color_hex .. '/' .. new_command .. ' [ID игрока] [аргумент] [аргумент] {ffffff}успешно сохранена!', message_color)
 						end
 						sampUnregisterChatCommand(binder_data.change_cmd)
 						register_command(command.cmd, command.arg, command.text, tonumber(command.waiting))
@@ -5790,7 +5790,7 @@ imgui.OnFrame(
 		-- 	sizeYY = (24.5 * ( tonumber(#wanted) + 2 )) + (25 * settings.general.custom_dpi)
 		-- elseif tonumber(#wanted) == 0 then
 		-- 	sizeYY = 30 * settings.general.custom_dpi
-		-- 	sampAddChatMessage('[Justice Helper] {ffffff}Сейчас на сервере нету игроков с розыском!', message_color)
+		-- 	sampAddChatMessage('[Mentovka Helper] {ffffff}Сейчас на сервере нету игроков с розыском!', message_color)
 		-- 	WantedWindow[0] = false
 		-- end
 		-- imgui.SetNextWindowSize(imgui.ImVec2(350 * settings.general.custom_dpi, sizeYY * settings.general.custom_dpi), imgui.Cond.FirstUseEver)
@@ -5800,7 +5800,7 @@ imgui.OnFrame(
 
 		if imgui.Button(u8'Обновить список преступников', imgui.ImVec2(340 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
 			WantedWindow[0] = false
-			sampAddChatMessage('[Justice Helper] {ffffff}Вы можете включить авто-обновление /wanteds в настройках Ассистента!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Вы можете включить авто-обновление /wanteds в настройках Ассистента!', message_color)
 			sampProcessChatInput('/wanteds')
 		end
 		imgui.Separator()
@@ -5875,7 +5875,7 @@ imgui.OnFrame(
 			end
 		end
 		if not check then
-			sampAddChatMessage('[Justice Helper] {ffffff}Нету команд включенных на работу в FastMenu!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Нету команд включенных на работу в FastMenu!', message_color)
 			FastMenu[0] = false
 		end
 		imgui.End()
@@ -5917,7 +5917,7 @@ imgui.OnFrame(
     function() return GiveRankMenu[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY / 2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(fa.BUILDING_SHIELD.." Justice Helper##rank", GiveRankMenu, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize)
+		imgui.Begin(fa.BUILDING_SHIELD.." Mentovka Helper##rank", GiveRankMenu, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize)
 		change_dpi()
 		imgui.CenterText(u8'Выберите ранг для '.. sampGetPlayerNickname(player_id) .. ':')
 		imgui.PushItemWidth(250 * settings.general.custom_dpi)
@@ -5941,7 +5941,7 @@ imgui.OnFrame(
     function() return CommandStopWindow[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY - 50 * settings.general.custom_dpi), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(fa.BUILDING_SHIELD .. " Justice Helper##CommandStopWindow", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize )
+		imgui.Begin(fa.BUILDING_SHIELD .. " Mentovka Helper##CommandStopWindow", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize )
 		change_dpi()
 		if isMonetLoader() and isActiveCommand then
 			if imgui.Button(fa.CIRCLE_STOP..u8' Остановить отыгровку ') then
@@ -5959,7 +5959,7 @@ imgui.OnFrame(
     function() return CommandPauseWindow[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(sizeX / 2, sizeY - 50 * settings.general.custom_dpi), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
-		imgui.Begin(fa.BUILDING_SHIELD.." Justice Helper##CommandPauseWindow", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize )
+		imgui.Begin(fa.BUILDING_SHIELD.." Mentovka Helper##CommandPauseWindow", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoScrollbar + imgui.WindowFlags.AlwaysAutoResize )
 		change_dpi()
 		if command_pause then
 			if imgui.Button(fa.CIRCLE_ARROW_RIGHT .. u8' Продолжить ', imgui.ImVec2(150 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
@@ -6005,7 +6005,7 @@ imgui.OnFrame(
     function() return FastMenuButton[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(settings.windows_pos.mobile_fastmenu_button.x, settings.windows_pos.mobile_fastmenu_button.y), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .." Justice Helper##fast_menu_button", FastMenuButton, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.NoBackground  )
+		imgui.Begin(fa.BUILDING_SHIELD .." Mentovka Helper##fast_menu_button", FastMenuButton, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  + imgui.WindowFlags.NoTitleBar + imgui.WindowFlags.NoBackground  )
 		change_dpi()
 		if imgui.Button(fa.IMAGE_PORTRAIT..u8' Взаимодействие ') then
 			if tonumber(#get_players()) == 1 then
@@ -6029,7 +6029,7 @@ imgui.OnFrame(
     function() return MegafonWindow[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(settings.windows_pos.megafon.x, settings.windows_pos.megafon.y), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .. " Justice Helper##fast_meg_button", MegafonWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoBackground + imgui.WindowFlags.NoTitleBar)
+		imgui.Begin(fa.BUILDING_SHIELD .. " Mentovka Helper##fast_meg_button", MegafonWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoBackground + imgui.WindowFlags.NoTitleBar)
 		change_dpi()
 		if not isMonetLoader() and not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() then player.HideCursor = true else player.HideCursor = false end
 		if imgui.Button(fa.BULLHORN .. u8' 10-55 ',  imgui.ImVec2(75 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
@@ -6056,7 +6056,7 @@ imgui.OnFrame(
     function() return TaserWindow[0] end,
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(settings.windows_pos.taser.x, settings.windows_pos.taser.y), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .. " Justice Helper##TaserWindow", TaserWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoBackground + imgui.WindowFlags.NoTitleBar)
+		imgui.Begin(fa.BUILDING_SHIELD .. " Mentovka Helper##TaserWindow", TaserWindow, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoBackground + imgui.WindowFlags.NoTitleBar)
 		change_dpi()
 		if not isMonetLoader() and not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() then player.HideCursor = true else player.HideCursor = false end
 		if imgui.Button(fa.GUN .. u8' Taser ',  imgui.ImVec2(75 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
@@ -6080,7 +6080,7 @@ imgui.OnFrame(
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(settings.windows_pos.info_menu.x, settings.windows_pos.info_menu.y), imgui.Cond.FirstUseEver)
 		imgui.SetNextWindowSize(imgui.ImVec2(225 * settings.general.custom_dpi, 113 * settings.general.custom_dpi), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .. u8" Justice Helper##info_menu", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoScrollbar  )
+		imgui.Begin(fa.BUILDING_SHIELD .. u8" Mentovka Helper##info_menu", _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.NoScrollbar  )
 		if not isMonetLoader() and not sampIsChatInputActive() then player.HideCursor = true else player.HideCursor = false end
 		change_dpi()
 		imgui.Text(fa.CITY .. u8(' Город: ') .. u8(tagReplacements.get_city()))
@@ -6102,7 +6102,7 @@ imgui.OnFrame(
     function(player)
 		imgui.SetNextWindowPos(imgui.ImVec2(settings.windows_pos.patrool_menu.x, settings.windows_pos.patrool_menu.y), imgui.Cond.FirstUseEver)
 		imgui.SetNextWindowSize(imgui.ImVec2(225 * settings.general.custom_dpi, 113 * settings.general.custom_dpi), imgui.Cond.FirstUseEver)
-		imgui.Begin(fa.BUILDING_SHIELD .. u8" Justice Helper##patrool_info_menu", PatroolMenu, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize )
+		imgui.Begin(fa.BUILDING_SHIELD .. u8" Mentovka Helper##patrool_info_menu", PatroolMenu, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize )
 		change_dpi()
 		if not isMonetLoader() and not sampIsChatInputActive() and not sampIsDialogActive() and not isSampfuncsConsoleActive() then player.HideCursor = true else player.HideCursor = false end
 		if patrool_active then
@@ -6111,7 +6111,7 @@ imgui.OnFrame(
 			imgui.Text(fa.CIRCLE_INFO .. u8(' Ваше состояние: ') .. u8(tagReplacements.get_patrool_code()))
 			imgui.SameLine()
 			if imgui.SmallButton(fa.GEAR) then
-				imgui.OpenPopup(fa.BUILDING_SHIELD .. u8(' Justice Helper##patrool_select_code'))
+				imgui.OpenPopup(fa.BUILDING_SHIELD .. u8(' Mentovka Helper##patrool_select_code'))
 			end
 			imgui.Separator()
 			if imgui.Button(fa.CIRCLE_INFO .. u8(' Доклад'), imgui.ImVec2(100 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
@@ -6150,14 +6150,14 @@ imgui.OnFrame(
 			player.HideCursor = false	
 			if imgui.Button(fa.CIRCLE_PLAY .. u8(' Начать патруль'), imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
 				if isCharInAnyCar(PLAYER_PED) then
-					imgui.OpenPopup(fa.BUILDING_SHIELD .. u8(' Justice Helper##start_patrool'))
+					imgui.OpenPopup(fa.BUILDING_SHIELD .. u8(' Mentovka Helper##start_patrool'))
 				else
 					PatroolMenu[0] = false
-					sampAddChatMessage('[Justice Helper] {ffffff}Нельзя начать патруль, вы должны быть за рулём транспорта!', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Нельзя начать патруль, вы должны быть за рулём транспорта!', message_color)
 				end
 			end
 		end
-		if imgui.BeginPopupModal(fa.BUILDING_SHIELD .. u8(' Justice Helper##start_patrool'), _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize ) then
+		if imgui.BeginPopupModal(fa.BUILDING_SHIELD .. u8(' Mentovka Helper##start_patrool'), _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize + imgui.WindowFlags.AlwaysAutoResize ) then
 			change_dpi()
 			player.HideCursor = false 
 			imgui.CenterText(u8('Настройка данных перед началом патруля:'))
@@ -6203,7 +6203,7 @@ imgui.OnFrame(
 			end
 			imgui.End()
 		end
-		if imgui.BeginPopup(fa.BUILDING_SHIELD .. u8(' Justice Helper##patrool_select_code'), _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  ) then
+		if imgui.BeginPopup(fa.BUILDING_SHIELD .. u8(' Mentovka Helper##patrool_select_code'), _, imgui.WindowFlags.NoCollapse + imgui.WindowFlags.NoResize  ) then
 			change_dpi()
 			player.HideCursor = false 
 			imgui.PushItemWidth(150 * settings.general.custom_dpi)
@@ -6395,7 +6395,7 @@ imgui.OnFrame(
 			end
 			imgui.EndChild()
 		else
-			sampAddChatMessage('[Justice Helper] {ffffff}Прозиошла ошибка, ID игрока недействителен!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Прозиошла ошибка, ID игрока недействителен!', message_color)
 			SobesMenu[0] = false
 		end
     end
@@ -6462,7 +6462,7 @@ imgui.OnFrame(
                     imgui.SameLine()
                     if imgui.Button(fa.FLOPPY_DISK .. u8' Сохранить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
                         for i = 1, 10, 1 do
-							sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
 						end
                         imgui.CloseCurrentPopup()
                     end
@@ -6494,7 +6494,7 @@ imgui.OnFrame(
                     imgui.SameLine()
                     if imgui.Button(fa.FLOPPY_DISK .. u8' Сохранить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
                         for i = 1, 10, 1 do
-							sampAddChatMessage('[Justice Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
 						end
                         imgui.CloseCurrentPopup()
                     end
@@ -6573,7 +6573,7 @@ imgui.OnFrame(
 				end
 			end
         else
-            sampAddChatMessage('[Justice Helper] {ffffff}Произошла ошибка умного розыска (нету данных либо игрок офнулся)!', message_color)
+            sampAddChatMessage('[Mentovka Helper] {ffffff}Произошла ошибка умного розыска (нету данных либо игрок офнулся)!', message_color)
             SumMenuWindow[0] = false
         end
         imgui.End()
@@ -6636,7 +6636,7 @@ imgui.OnFrame(
 				end
 			end
         else
-			sampAddChatMessage('[Justice Helper] {ffffff}Произошла ошибка умных штрафов (нету данных либо игрок офнулся)!', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Произошла ошибка умных штрафов (нету данных либо игрок офнулся)!', message_color)
             TsmMenuWindow[0] = false
         end
         imgui.End()
@@ -6651,7 +6651,7 @@ imgui.OnFrame(
 -- 		if not isMonetLoader() then change_dpi() end
 -- 		imgui.CenterText(u8'У вас сейчас установлена версия хелпера ' .. u8(tostring(thisScript().version)) .. ".")
 -- 		imgui.CenterText(u8'В базе данных найдена версия хелпера - ' .. u8(updateVer) .. ".")
--- 		if imgui.Button(fa.CIRCLE_XMARK .. u8' Остаться на Justice ',  imgui.ImVec2(300 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
+-- 		if imgui.Button(fa.CIRCLE_XMARK .. u8' Остаться на Mentovka ',  imgui.ImVec2(300 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
 -- 			UpdateWindow[0] = false
 -- 		end
 -- 		imgui.SameLine()
@@ -6963,7 +6963,7 @@ function main()
 	initialize_commands()
 	
 	if settings.player_info.name_surname == '' or settings.player_info.fraction == 'Неизвестно' then
-		sampAddChatMessage('[Justice Helper] {ffffff}Пытаюсь получить ваш /stats поскольку остуствуют данные про вас!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Пытаюсь получить ваш /stats поскольку остуствуют данные про вас!', message_color)
 		check_stats = true
 		sampSendChat('/stats')
 	end
@@ -7003,14 +7003,14 @@ function main()
 			nowGun = getCurrentCharWeapon(PLAYER_PED)
 
 			if not isExistsWeapon(oldGun) then
-				sampAddChatMessage('[Justice Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. oldGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
-				sampAddChatMessage('[Justice Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. oldGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
 				table.insert(rp_guns, {id = oldGun, name = "оружие", enable = true, rpTake = 1})
 				init_guns()
 				save_rp_guns()
 			elseif not isExistsWeapon(nowGun) then
-				sampAddChatMessage('[Justice Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. nowGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
-				sampAddChatMessage('[Justice Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. nowGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
 				table.insert(rp_guns, {id = nowGun, name = "оружие", enable = true, rpTake = 1})
 				init_guns()
 				save_rp_guns()
@@ -7020,14 +7020,14 @@ function main()
 				if oldGun == 0 and nowGun == 0 then
 
 				elseif oldGun == 0 and not isEnableWeapon(nowGun) then
-					sampAddChatMessage('[Justice Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(nowGun) .. ' [' .. nowGun .. ']{ffffff}, игнорирую её', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(nowGun) .. ' [' .. nowGun .. ']{ffffff}, игнорирую её', message_color)
 				elseif nowGun == 0 and not isEnableWeapon(oldGun) then
-					sampAddChatMessage('[Justice Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(oldGun) .. ' [' .. oldGun .. ']{ffffff}, игнорирую её', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(oldGun) .. ' [' .. oldGun .. ']{ffffff}, игнорирую её', message_color)
 				elseif not isEnableWeapon(oldGun) and isEnableWeapon(nowGun) then
-					sampAddChatMessage('[Justice Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(oldGun) .. ' [' .. oldGun .. ']{ffffff}, игнорирую её', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(oldGun) .. ' [' .. oldGun .. ']{ffffff}, игнорирую её', message_color)
 					sampSendChat("/me " .. gunOn[nowGun] .. " " .. get_name_weapon(nowGun) .. " " .. gunPartOn[nowGun])
 				elseif isEnableWeapon(oldGun) and not isEnableWeapon(nowGun) then
-					sampAddChatMessage('[Justice Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(nowGun) .. ' [' .. nowGun .. ']{ffffff}, игнорирую её', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Поскольку вы отключити отыгровку для ' .. message_color_hex ..  get_name_weapon(nowGun) .. ' [' .. nowGun .. ']{ffffff}, игнорирую её', message_color)
 					sampSendChat("/me " .. gunOff[oldGun] .. " " .. get_name_weapon(oldGun) .. " " .. gunPartOff[oldGun])
 				elseif oldGun == 0 and gunOn[nowGun] then
 					sampSendChat("/me " .. gunOn[nowGun] .. " " .. get_name_weapon(nowGun) .. " " .. gunPartOn[nowGun])
@@ -7043,7 +7043,7 @@ function main()
 		local currentSecond = os.date("%S", os.time())
 		if ((currentMinute == "55" or currentMinute == "25") and currentSecond == "00") then
 			if sampGetPlayerColor(tagReplacements.my_id()) == 368966908 then
-				sampAddChatMessage('[Justice Helper] {ffffff}Через 5 минут будет PAYDAY. Наденьте форму чтобы не пропустить зарплату!', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Через 5 минут будет PAYDAY. Наденьте форму чтобы не пропустить зарплату!', message_color)
 				wait(1000)
 			end
 		end
@@ -7053,9 +7053,9 @@ end
 
 function onScriptTerminate(script, game_quit)
     if script == thisScript() and not game_quit and not reload_script then
-		sampAddChatMessage('[Justice Helper] {ffffff}Произошла неизвестная ошибка, хелпер приостановил свою работу!', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Произошла неизвестная ошибка, хелпер приостановил свою работу!', message_color)
 		if not isMonetLoader() then 
-			sampAddChatMessage('[Justice Helper] {ffffff}Используйте ' .. message_color_hex .. 'CTRL {ffffff}+ ' .. message_color_hex .. 'R {ffffff}чтобы перезапустить хелпер.', message_color)
+			sampAddChatMessage('[Mentovka Helper] {ffffff}Используйте ' .. message_color_hex .. 'CTRL {ffffff}+ ' .. message_color_hex .. 'R {ffffff}чтобы перезапустить хелпер.', message_color)
 		end
 		setInfraredVision(false)
 		setNightVision(false)
