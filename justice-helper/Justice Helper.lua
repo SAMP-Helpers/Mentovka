@@ -2283,7 +2283,7 @@ function getNameOfARZVehicleModel(id)
 	if need_download_arzveh then
 		sampAddChatMessage('[Mentovka Helper] {ffffff}Пытаюсь скачать файл VehiclesArizona.json в папку ' .. path_arzvehicles, message_color)
 		download_arzvehicles = true
-		downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartVEH/Vehicles.json', path_arzvehicles)
+		downloadFileFromUrlToPath('https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/VehiclesArizona/VehiclesArizona.json', path_arzvehicles)
 		return ' транспортного средства'
 	end
 end
@@ -2786,7 +2786,7 @@ function check_update()
 	sampAddChatMessage('[Mentovka Helper] {ffffff}Начинаю проверку на наличие обновлений...', message_color)
 	local path = configDirectory .. "/Update_Info.json"
 	os.remove(path)
-	local url = 'https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/Mentovka-helper/Update_Info.json'
+	local url = 'https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/Update_Info.json'
 	if isMonetLoader() then
 		downloadToFile(url, path, function(type, pos, total_size)
 			if type == "finished" then
@@ -4508,7 +4508,7 @@ imgui.OnFrame(
 					imgui.SetCursorPosX(105 * settings.general.custom_dpi)
 					if imgui.Button(fa.DOWNLOAD .. u8' Загрузить ##smartuk') then
 						download_smartuk = true
-						downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartUK/' .. getARZServerNumber() .. '/SmartUK.json', path_uk)
+						downloadFileFromUrlToPath('https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/SmartUK/' .. getARZServerNumber() .. '/SmartUK.json', path_uk)
 						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartuk')
 					end
 					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartuk', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
@@ -4532,7 +4532,7 @@ imgui.OnFrame(
 						end
 						imgui.SameLine()
 						if imgui.Button(fa.CIRCLE_PLAY .. u8' Открыть облако', imgui.ImVec2(300 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
-							openLink('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartUK/')
+							openLink('https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/SmartUK/')
 							MainWindow[0] = false
 						end
 						imgui.EndPopup()
@@ -4736,7 +4736,7 @@ imgui.OnFrame(
 					imgui.SetCursorPosX(105 * settings.general.custom_dpi)
 					if imgui.Button(fa.DOWNLOAD .. u8' Загрузить ##smartpdd') then
 						download_smartpdd = true
-						downloadFileFromUrlToPath('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartPDD/' .. getARZServerNumber() .. '/SmartPDD.json', path_pdd)
+						downloadFileFromUrlToPath('https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/SmartPDD/' .. getARZServerNumber() .. '/SmartPDD.json', path_pdd)
 						imgui.OpenPopup(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartpdd')
 					end
 					if imgui.BeginPopupModal(fa.CIRCLE_INFO .. u8' Mentovka Helper - Оповещение##donwloadsmartpdd', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize) then
@@ -4760,7 +4760,7 @@ imgui.OnFrame(
 						end
 						imgui.SameLine()
 						if imgui.Button(fa.CIRCLE_PLAY .. u8' Открыть облако', imgui.ImVec2(300 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
-							openLink('https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/SmartPDD/')
+							openLink('https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/SmartPDD/')
 							MainWindow[0] = false
 						end
 						imgui.EndPopup()
