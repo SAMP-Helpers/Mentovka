@@ -6,7 +6,7 @@
         "link": "https://github.com/MTGMODS/arizona-helper/raw/refs/heads/main/Arizona%20Helper.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1261913114337873961/IMG_20240714_081151.jpg?ex=6748a46b&is=674752eb&hm=3264a1f936434a74e640f323458712cc823153b6ab95ca1d28b0332b02470472&",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для ЛЮБОЙ фракции (/helper)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/helper)"
     },
     {
         "name": "AS Helper",
@@ -15,16 +15,16 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/as_helper/AS%20Helper.lua",
         "img": "https://cdn.discordapp.com/attachments/1119664359891800186/1273035686450171974/image.png?ex=67483c9f&is=6746eb1f&hm=9fa1b544a3bb1584adcc40592070403784c922fc91556149c5ecb80eb4a8eb40&",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников ГЦЛ/Автошколы (/sh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/sh)"
     },
     {
-        "name": "Justice Helper",
-        "ver": "2.2 Free",
-        "author": "MTG MODS",
-        "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/justice-helper/Justice%20Helper.lua",
+        "name": "Mentovka Helper",
+        "ver": "2.5",
+        "author": "SAMP Helpers",
+        "link": "https://github.com/SAMP-Helpers/Mentovka/raw/refs/heads/main/justice-helper/Justice%20Helper.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1261913114337873961/IMG_20240714_081151.jpg?ex=6748a46b&is=674752eb&hm=3264a1f936434a74e640f323458712cc823153b6ab95ca1d28b0332b02470472&",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников МЮ (ПД/ФБР) и МО (Армии) (/jh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ (пїЅпїЅ/пїЅпїЅпїЅ) пїЅ пїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ) (/jh)"
     },
     {
         "name": "Hospital Helper",
@@ -33,7 +33,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/hospital_helper/Hospital%20Helper.lua",
         "img": "https://cdn.discordapp.com/attachments/1119664359891800186/1242878369834467469/image.png?ex=67489bae&is=67474a2e&hm=8cac8a402dc79745757831da513a57bbb295cdb9aea80a907597fcc4a0a22010&",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников МЗ (Больницы) (/hh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) (/hh)"
     },
     {
         "name": "SMI Helper",
@@ -42,7 +42,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/smi_helper/SMI%20Helper.lua",
         "img": "https://cdn.discordapp.com/attachments/1119664359891800186/1281920647622037514/image.png?ex=674842a3&is=6746f123&hm=a42dcb87f5fb767acfde353095de6fd8d7264b08f9d7bb32f3898c69cf4376ec&",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников СМИ (радиоцентры) (/smi)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) (/smi)"
     },
     {
         "name": "FD Helper",
@@ -51,7 +51,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/fd_helper/FD%20Helper.lua",
         "img": "",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников Пожарного Депортамента (/fh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/fh)"
     },
     {
         "name": "Mafia Helper",
@@ -60,7 +60,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/mafia_helper/Mafia%20Helper.lua",
         "img": "",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для Мафий (/mh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (/mh)"
     },
     {
         "name": "Government Helper",
@@ -69,7 +69,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/gov_helper/Government%20Helper.lua",
         "img": "https://media.discordapp.net/attachments/1251238756435099750/1283407807302996008/2024-09-11_174406.png?ex=674865a9&is=67471429&hm=c5b967277afba7fd4459c5db3439b64834c14cf5e02a3e1dde47070073b78c3b&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников Правительства (/gh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/gh)"
     },
     {
         "name": "Prison Helper",
@@ -78,7 +78,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/prison_helper/Prison%20Helper.lua",
         "img": "",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для сотрудников ТСР (тюрьмы) (/ph)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ) (/ph)"
     },
     {
         "name": "Weapon FIX",
@@ -87,7 +87,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/weapon_fix/weapfixxx.lua",
         "img": "",
         "platform": "MOBILE",
-        "info": "Фикс пропажи оружия, автор фикса dmk (dev arzmod)"
+        "info": "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ dmk (dev arzmod)"
     },
     {
         "name": "AutoDoor",
@@ -96,7 +96,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/auto_door/AutoDoor.lua",
         "img": "",
         "platform": "PC + MOBILE",
-        "info": "Авто-открытие дверей, шлагбаумов, кпп и т.д."
+        "info": "пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅ.пїЅ."
     },
     {
         "name": "Binder",
@@ -105,7 +105,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/binder/Binder.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1234242830294188103/image.png?ex=67482c75&is=6746daf5&hm=7354fbb13de8c60ad6ece57671c9eb02129f12245768756bbd2ffc463f28da78&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Удобная замена аризоновского /binder"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ /binder"
     },
     {
         "name": "Buttons",
@@ -114,7 +114,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/buttons/Buttons.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1247947013883039796/image.png?ex=67489739&is=674745b9&hm=efe3c69c3a4e4a07858bb4e2f30816649924726af821938a370aece92af74237&=&format=webp&quality=lossless",
         "platform": "MOBILE",
-        "info": "Добавляет 2 наэкранных кнопки - Нарко и Армор"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ"
     },
     {
         "name": "CamHack",
@@ -123,7 +123,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/camhack/CamHack.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1267954063987970070/image.png?ex=674834fe&is=6746e37e&hm=a84d4afa4374b9f2ce05ecaf0a962be948102ec2e61af459c13e7f0ca632520e&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Свободное управление камерой (/cmh)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/cmh)"
     },
     {
         "name": "Oil Helper",
@@ -132,7 +132,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/oil_helper/Oil_Helper.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1267954063987970070/image.png?ex=674834fe&is=6746e37e&hm=a84d4afa4374b9f2ce05ecaf0a962be948102ec2e61af459c13e7f0ca632520e&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Хелпер для нефтевышек (/oil_sell в конце)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/oil_sell пїЅ пїЅпїЅпїЅпїЅпїЅ)"
     },
     {
         "name": "Probiv",
@@ -141,7 +141,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/probiv/Probiv.lua",
         "img": "",
         "platform": "PC + MOBILE",
-        "info": "Получение статы любого игрока (/probiv)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (/probiv)"
     },
     {
         "name": "CarSnakeFix",
@@ -150,7 +150,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/car_snake_fix/CarSnakeFix.lua",
         "img": "",
         "platform": "PC",
-        "info": "Фиксит тряску задней части т/с"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ/пїЅ"
     },
     {
         "name": "Clever Sight",
@@ -159,7 +159,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/clever_sight/CleverSight%20V3.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1213855554057932822/image.png?ex=67487e14&is=67472c94&hm=78e37ab72ac817c8b2250ef731dbc78ca78cd4d8d1e96aa3601a7cfc9c79e4a3&=&format=webp&quality=lossless",
         "platform": "PC",
-        "info": "Смена цвета прицела прямо в игре (/sight)"
+        "info": "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ (/sight)"
     },
     {
         "name": "Deposite Calculator",
@@ -168,7 +168,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/dep_calculator/Deposite%20Calculator.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1268207231955107952/image.png?ex=67487806&is=67472686&hm=966972ac3c12682fc46d4b55c7b95f3459746e9a1b020ea120a4ae64f3b86238&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Посчёт прибыли с депозита с условиями (/deposite)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/deposite)"
     },
     {
         "name": "KazBar",
@@ -177,7 +177,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/kazbar/KazBar.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1281897704389349416/image.png?ex=67482d45&is=6746dbc5&hm=7255fa17174a51f6ca4a061ddf6644db7f2d514bb8409f985d28504f804fe3f7&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Автоматически принимает ставки и таймит (/kazbar)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (/kazbar)"
     },
     {
         "name": "Mimgui ScoreBoard",
@@ -186,7 +186,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/scoreboard/Mimgui%20ScoreBoard.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1226260796997374074/image.png?ex=6748239c&is=6746d21c&hm=3871b70636dd18fc6fef66b4700991943bb14fbb90523dbb8b59814dfbeadb88&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Скрипт заменяет самповский ScoreBoard (/tab)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ScoreBoard (/tab)"
     },
     {
         "name": "RP Weapons",
@@ -195,7 +195,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/rp-weapons/WeaponsRP.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1299429817061474396/image.png?ex=6748ad52&is=67475bd2&hm=4c244c4094706986d9c2ecd8b9b22ceb837ca46290c34c16ac6be77be03ad9f3&=&format=webp&quality=lossless",
         "platform": "PC + MOBILE",
-        "info": "Добавляет RP отыгровки оружия (есть в хелперах)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)"
     },
     {
         "name": "RestartPowerOff",
@@ -204,7 +204,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/restart_off/RestartPowerOff.lua",
         "img": "",
         "platform": "PC",
-        "info": "Выключает ваш ПК после рестарта на АРЗ"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ"
     },
     {
         "name": "Time & Weather",
@@ -213,7 +213,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/time_weather/Time%20&%20Weather.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1226236887774265454/Screenshot_2024-04-06-18-06-07-284_com.arizona.game.jpg?ex=6748b618&is=67476498&hm=06f5ab0bbdc3be7cdb8a7d76143738a3de6959566351ba447d1408e54834ebdc&=&format=webp&width=1440&height=648",
         "platform": "PC + MOBILE",
-        "info": "Смена времени и погоды (/shelp)"
+        "info": "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (/shelp)"
     },
     {
         "name": "Offline Uninviter",
@@ -222,7 +222,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/off_uninvite/Offline%20Uninvite.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1226236887774265454/Screenshot_2024-04-06-18-06-07-284_com.arizona.game.jpg?ex=6748b618&is=67476498&hm=06f5ab0bbdc3be7cdb8a7d76143738a3de6959566351ba447d1408e54834ebdc&=&format=webp&width=1440&height=648",
         "platform": "PC + MOBILE",
-        "info": "Чистка неактива фракции (/fcleaner)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (/fcleaner)"
     },
     {
         "name": "AutoSell Fish Items",
@@ -231,7 +231,7 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/asell_fish/AutoSell%20Fish%20&%20Items.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1226236887774265454/Screenshot_2024-04-06-18-06-07-284_com.arizona.game.jpg?ex=6748b618&is=67476498&hm=06f5ab0bbdc3be7cdb8a7d76143738a3de6959566351ba447d1408e54834ebdc&=&format=webp&width=1440&height=648",
         "platform": "PC + MOBILE",
-        "info": "Автопродажа рыбы и редких вещей"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
     },
     {
         "name": "MyAccent",
@@ -240,6 +240,6 @@
         "link": "https://github.com/MTGMODS/lua_scripts/raw/refs/heads/main/accent/MyAccent.lua",
         "img": "https://media.discordapp.net/attachments/1119664359891800186/1119673213874606190/image.png?ex=6748a1f0&is=67475070&hm=cbe3dbb7eb1c90e07676346b3806f7ca5b9fd65ac172571ce9252f10cd5510d7&=&format=webp&quality=lossless",
         "platform": "PC",
-        "info": "Настройка акцента в чате (/acc)"
+        "info": "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ (/acc)"
     }
 ]
