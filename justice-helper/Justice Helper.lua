@@ -3,7 +3,7 @@
 script_name("Mentovka Helper")
 script_description('This is a Cross-platform Lua script helper for Arizona RP players who work in the Ministry of Mentovka (PD and FBI) ??and the Ministry of Defense (Army)')
 script_author("SAMP Helpers")
-script_version("2.6")
+script_version("2.6.1")
 
 require('lib.moonloader')
 require('encoding').default = 'CP1251'
@@ -1651,7 +1651,7 @@ function find_and_use_command(cmd, cmd_arg)
 	end
 end
 function initialize_commands()
-	sampRegisterChatCommand("jh", function() MainWindow[0] = not MainWindow[0] end)
+	sampRegisterChatCommand("mh", function() MainWindow[0] = not MainWindow[0] end)
 	sampRegisterChatCommand("jm", show_fast_menu)
 	sampRegisterChatCommand("stop", function() 
 		if isActiveCommand then 
