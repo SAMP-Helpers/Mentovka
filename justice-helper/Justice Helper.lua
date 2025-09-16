@@ -1443,11 +1443,11 @@ function welcome_message()
 	print('[Mentovka Helper] Загрузка хелпера прошла успешно!')
 	show_arz_notify('info', 'Mentovka Helper', "Загрузка хелпера прошла успешно!", 3000)
 	if isMonetLoader() or settings.general.bind_mainmenu == nil or not settings.general.use_binds then	
-		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/mh', message_color)
 	elseif hotkey_no_errors and settings.general.bind_mainmenu and settings.general.use_binds then
-		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_mainmenu) .. ' {ffffff}или введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера нажмите ' .. message_color_hex .. getNameKeysFrom(settings.general.bind_mainmenu) .. ' {ffffff}или введите команду ' .. message_color_hex .. '/mh', message_color)
 	else
-		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/jh', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Чтоб открыть меню хелпера введите команду ' .. message_color_hex .. '/mh', message_color)
 	end
 end
 function registerCommandsFrom(array)
@@ -1667,7 +1667,7 @@ function initialize_commands()
 					player_id = tonumber(arg)
 					SumMenuWindow[0] = true 
 				else
-					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умный розыск в /jh', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умный розыск в /mh', message_color)
 					play_error_sound()
 				end
 			else
@@ -1686,7 +1686,7 @@ function initialize_commands()
 					player_id = tonumber(arg)
 					TsmMenuWindow[0] = true 
 				else
-					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умные штрафы в /jh', message_color)
+					sampAddChatMessage('[Mentovka Helper] {ffffff}Сначало загрузите/отредактируйте умные штрафы в /mh', message_color)
 					play_error_sound()
 				end
 			else
@@ -2035,7 +2035,7 @@ function play_error_sound()
 end
 function show_fast_menu(id)
 	if isParamSampID(id) then 
-		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /mh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
 		player_id = tonumber(id)
 		FastMenu[0] = true
 	else
@@ -2054,7 +2054,7 @@ end
 function show_leader_fast_menu(id)
 	if isParamSampID(id) then
 		player_id = tonumber(id)
-		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /jh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
+		sampAddChatMessage('[Mentovka Helper] {ffffff}Добавить/убрать команду из FastMenu можно в /mh - RP команды - Изменение, аргумент {arg_id}, галочка', message_color)
 		LeaderFastMenu[0] = true
 	else
 		if isMonetLoader() or settings.general.bind_leader_fastmenu == nil then
@@ -4425,7 +4425,7 @@ imgui.OnFrame(
 										end
 										if settings.general.use_binds and hotkey_no_errors then
 											imgui.Separator()
-											imgui.CenterText(u8'Открытие главного меню хелпера (аналог /jh):')
+											imgui.CenterText(u8'Открытие главного меню хелпера (аналог /mh):')
 											local width = imgui.GetWindowWidth()
 											local calc = imgui.CalcTextSize(getNameKeysFrom(settings.general.bind_mainmenu))
 											imgui.SetCursorPosX( width / 2 - calc.x / 2 )
@@ -7004,13 +7004,13 @@ function main()
 
 			if not isExistsWeapon(oldGun) then
 				sampAddChatMessage('[Mentovka Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. oldGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
-				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /mh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
 				table.insert(rp_guns, {id = oldGun, name = "оружие", enable = true, rpTake = 1})
 				init_guns()
 				save_rp_guns()
 			elseif not isExistsWeapon(nowGun) then
 				sampAddChatMessage('[Mentovka Helper] {ffffff}Обнаружено новое оружие с ID ' .. message_color_hex .. nowGun .. '{ffffff}, даю ему имя "оружие" и расположение "спина".', message_color)
-				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /jh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
+				sampAddChatMessage('[Mentovka Helper] {ffffff}Изменить имя или расположение оружия вы можете в /mh - Главное меню - Режим RP отыгровки оружия - Настроить', message_color)
 				table.insert(rp_guns, {id = nowGun, name = "оружие", enable = true, rpTake = 1})
 				init_guns()
 				save_rp_guns()
