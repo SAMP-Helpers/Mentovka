@@ -3,7 +3,7 @@
 script_name("Mentovka Helper")
 script_description('This is a Cross-platform Lua script helper for Arizona RP players who work in the Ministry of Mentovka (PD and FBI) ??and the Ministry of Defense (Army)')
 script_author("SAMP Helpers")
-script_version("2.6.1")
+script_version("2.6.2")
 
 require('lib.moonloader')
 require('encoding').default = 'CP1251'
@@ -1744,22 +1744,12 @@ function initialize_commands()
 			play_error_sound()
 		end
 	end)
-	sampRegisterChatCommand("awanted", function() 
-		for i = 1, 10, 1 do
-			sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
-		end
-	end)
 	sampRegisterChatCommand("wanted", function(arg)
 		sampSendChat('/wanted ' .. arg)
 		sampAddChatMessage('[Mentovka Helper] {ffffff}Лучше используйте /wanteds для автосканирования всего вантеда!', message_color)
 	end)
 	sampRegisterChatCommand("meg", function ()
 		MegafonWindow[0] = not MegafonWindow[0]
-	end)
-	sampRegisterChatCommand("afind", function (arg)
-		for i = 1, 10, 1 do
-			sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
-		end
 	end)
 	sampRegisterChatCommand("wanteds", function(arg)
 		if WantedWindow[0] then
@@ -3781,71 +3771,7 @@ imgui.OnFrame(
 				
 				imgui.EndChild()
 				end
-				if imgui.BeginChild('##2', imgui.ImVec2(589 * settings.general.custom_dpi, 53 * settings.general.custom_dpi), true) then
-					imgui.CenterText(fa.ROBOT .. u8' Ассистент')
-					imgui.Separator()
-					imgui.Columns(2)
-					imgui.CenterColumnText(u8("Ваш незаменимый помощник для автоматизации некоторых действий"))
-					imgui.SetColumnWidth(-1, 480 * settings.general.custom_dpi)
-					imgui.NextColumn()
-					if imgui.CenterColumnSmallButton(u8'Управление') then
-						imgui.OpenPopup(fa.ROBOT .. u8' Ассистент автоматизирует (сам делает) некоторые ваши действия')
-					end
-					if imgui.BeginPopupModal(fa.ROBOT .. u8' Ассистент автоматизирует (сам делает) некоторые ваши действия', _, imgui.WindowFlags.NoCollapse  + imgui.WindowFlags.NoResize ) then
-						change_dpi()
-						imgui.BeginChild('##ai', imgui.ImVec2(589 * settings.general.custom_dpi, 355 * settings.general.custom_dpi), true)
-						local function close()
-							for i = 1, 10, 1 do
-								sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
-							end
-							imgui.CloseCurrentPopup()
-						end
-						if imgui.Checkbox(u8(' [В патруле] Доклад в рацию каждые 10 минут патруля'), checkbox_patrool_autodoklad) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [В патруле] Изменение ситуационного кода на CODE 3/4 при вкл/выкл мигалок'), checkbox_change_code_siren) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [При получении урона] Доклад в рацию про CODE 0 и указание ника в нрп рацию'), checkbox_autodoklad_damage) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [Проверка документов] Принятие паспорта/мед.карты/лицензий из /offer с рп отыгровкой'), checkbox_auto_accept_docs) then
-							close()
-						end	
-						if imgui.Checkbox(u8(' [Завершенный арест] Доклад в рацию с именем арестованого'), checkbox_autodoklad_arrest) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [При обыске, выдачи розыска, аресте] Пробив /time для скриншотов'), checkbox_auto_time) then
-							close()
-						end	
-						if imgui.Checkbox(u8(' [Расследования] Заполнение всех нужных данных в диалогах'), checkbox_autodocumentation) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [Меню /wanteds] Обновление списка преступников каждые 10 секунд'), checkbox_update_wanteds) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [Меню /mb] Обновление списка сотрудников каждые 3 секунды'), checkbox_update_members) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [При слете маски с лица] Моментальное надевание новой маски'), checkbox_automask) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [Случайные Ситуации] Автокликер на сбор камней (') .. fa.TRIANGLE_EXCLAMATION .. u8(' может быть запрещено!)'), checkbox_auto_clicker) then
-							close()
-						end
-						if imgui.Checkbox(u8(' [AWANTED] Оповещение если преступник в зоне прорисовки (') .. fa.TRIANGLE_EXCLAMATION .. u8(' может быть запрещено!)'), checkbox_awanted) then
-							close()
-						end
-						imgui.EndChild()
-						if imgui.Button(fa.CIRCLE_XMARK .. u8" Закрыть", imgui.ImVec2(589 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
-							imgui.CloseCurrentPopup()
-						end
-						imgui.EndPopup()
-					end
-					imgui.SetColumnWidth(-1, 100 * settings.general.custom_dpi)
-					imgui.Columns(1)
-				imgui.EndChild()
-				end
+				
 				if imgui.BeginChild('##3', imgui.ImVec2(589 * settings.general.custom_dpi, 98 * settings.general.custom_dpi), true) then
 					imgui.CenterText(fa.SITEMAP .. u8' Дополнительные функции хелпера')
 					imgui.Separator()
@@ -4182,7 +4108,7 @@ imgui.OnFrame(
 						if imgui.Button(fa.CIRCLE_PLUS .. u8' Создать новую команду##new_cmd',imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
 							if #commands.commands >= 50 then
 								for i = 1, 10, 1 do
-									sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 50 команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+									sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит на 50 команд', message_color)
 								end
 							else
 								local new_cmd = {cmd = '', description = '', text = '', arg = '', enable = true, waiting = '1.500', bind = "{}" }
@@ -4360,7 +4286,7 @@ imgui.OnFrame(
 
 								if #commands.commands_manage >= 15 then
 									for i = 1, 10, 1 do
-										sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 15 лидер.команд, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+										sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит на 15 лидер.команд', message_color)
 									end
 								else
 									local new_cmd = {cmd = '', description = '', text = '', arg = '', enable = true, waiting = '1.500', bind = "{}" }
@@ -5041,7 +4967,7 @@ imgui.OnFrame(
 				if imgui.Button(fa.CIRCLE_PLUS .. u8' Создать новую заметку', imgui.ImVec2(imgui.GetMiddleButtonX(1), 0)) then
 					if #notes.note >= 5 then
 						for i = 1, 10, 1 do
-							sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит FREE версии на 5 заметок, безлим в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Лимит на 5 заметок', message_color)
 						end
 					else
 						local new_note = {note_name = "Новая заметка", note_text = "Текст вашей новой заметки" }
@@ -6462,7 +6388,7 @@ imgui.OnFrame(
                     imgui.SameLine()
                     if imgui.Button(fa.FLOPPY_DISK .. u8' Сохранить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
                         for i = 1, 10, 1 do
-							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция временно недоступна', message_color)
 						end
                         imgui.CloseCurrentPopup()
                     end
@@ -6494,7 +6420,7 @@ imgui.OnFrame(
                     imgui.SameLine()
                     if imgui.Button(fa.FLOPPY_DISK .. u8' Сохранить', imgui.ImVec2(200 * settings.general.custom_dpi, 25 * settings.general.custom_dpi)) then
                         for i = 1, 10, 1 do
-							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция доступна только в платной версии хелпера! Покупать у MTG MODS', message_color)
+							sampAddChatMessage('[Mentovka Helper] {ffffff}Данная функция временно недоступна', message_color)
 						end
                         imgui.CloseCurrentPopup()
                     end
