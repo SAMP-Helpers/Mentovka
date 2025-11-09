@@ -3,7 +3,7 @@
 script_name("Mentovka Helper")
 script_description('This is a Cross-platform Lua script helper for Arizona RP players who work in the Ministry of Mentovka (PD and FBI) ??and the Ministry of Defense (Army)')
 script_author("SAMP Helpers")
-script_version("2.6.3")
+script_version("2.6.3 FIX")
 
 require('lib.moonloader')
 require('encoding').default = 'CP1251'
